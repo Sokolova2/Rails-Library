@@ -43,10 +43,12 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem 'rubocop-rails-omakase', require: false
+
+  gem 'rspec-rails'
 end
 
 group :development do
-  # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem 'html2haml'
   gem 'web-console'
 
   gem 'rubocop'
@@ -61,4 +63,15 @@ group :test do
   gem 'selenium-webdriver'
 end
 
+gem 'devise'
+
+gem 'omniauth'
+
+gem 'omniauth-google-oauth2'
+
+gem 'omniauth-rails_csrf_protection', '~> 1.0'
+
 gem 'mongoid'
+gem 'haml-rails'
+
+gem 'dotenv', groups: %i[development test]
