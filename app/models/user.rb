@@ -35,6 +35,6 @@ class User
   field :remember_created_at, type: Time
 
   field :language
-  
+
   include Mongoid::Timestamps
 end
