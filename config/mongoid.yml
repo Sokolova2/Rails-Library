@@ -1,0 +1,16 @@
+development:
+  clients:
+    default:
+      uri: mongodb+srv://karinasokolovakos_db_user:wzU0YhuIEH91aNJj@rails-library.rxefdbc.mongodb.net/rails_library_development?retryWrites=true&w=majority
+      options:
+        server_selection_timeout: 5
+test:
+  clients:
+    default:
+      database: rails_library_test
+      hosts:
+        - localhost:27017
+      options:
+        read:
+          mode: :primary
+        max_pool_size: 1
