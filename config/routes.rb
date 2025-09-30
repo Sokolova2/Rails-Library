@@ -6,5 +6,5 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     sessions: 'users/sessions'
   }
-  root to: "home#index"
+  root to: 'home#index'
 end
