@@ -1,9 +1,13 @@
+# frozen_string_literal: true
+
 class User
   include Mongoid::Document
 
+  mount_uploader :avatar, AvatarUploader
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-          :omniauthable, omniauth_providers: [:google_oauth2]
+         :omniauthable, omniauth_providers: [:google_oauth2]
 
   class << self
     def from_omniauth(auth, lang = nil)
@@ -16,15 +20,15 @@ class User
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
       user.login = auth.info.login
-      # user.avatar = auth.info.image
+      user.avatar = auth.info.image
       user.language = I18n.default_locale
     end
   end
 
   field :login
 
-  field :email,              type: String, default: ""
-  field :encrypted_password, type: String, default: ""
+  field :email,              type: String, default: ''
+  field :encrypted_password, type: String, default: ''
   field :uid
   field :provider
 
@@ -34,7 +38,8 @@ class User
   ## Rememberable
   field :remember_created_at, type: Time
 
-  field :language
+  field :avatar, type: String
+  field :language, type: String
 
   include Mongoid::Timestamps
 end
