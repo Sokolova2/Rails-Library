@@ -2,6 +2,7 @@
 
 source 'https://rubygems.org'
 
+gem 'cssbundling-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 8.0.2'
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
@@ -71,7 +72,15 @@ gem 'omniauth-google-oauth2'
 
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
 
-gem 'mongoid'
 gem 'haml-rails'
+gem 'mongoid'
 
 gem 'dotenv', groups: %i[development test]
+
+gem 'bootstrap'
+gem 'bootstrap_icons_rails'
+gem 'jquery-rails'
+
+gem 'carrierwave', '~> 3.0'
+gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
+gem 'mini_magick'
