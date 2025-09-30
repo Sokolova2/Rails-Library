@@ -85,6 +85,10 @@ GEM
     bindex (0.8.1)
     bootsnap (1.18.6)
       msgpack (~> 1.2)
+    bootstrap (5.3.5)
+      popper_js (>= 2.11.8, < 3)
+    bootstrap_icons_rails (1.113.02)
+      railties (>= 4.2)
     brakeman (7.1.0)
       racc
     bson (5.1.1)
@@ -98,9 +102,21 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    carrierwave (3.1.2)
+      activemodel (>= 6.0.0)
+      activesupport (>= 6.0.0)
+      addressable (~> 2.6)
+      image_processing (~> 1.1)
+      marcel (~> 1.0.0)
+      ssrf_filter (~> 1.0)
+    carrierwave-mongoid (0.1.0)
+      carrierwave
+      mongoid
     concurrent-ruby (1.3.5)
     connection_pool (2.5.4)
     crass (1.0.6)
+    cssbundling-rails (1.4.3)
+      railties (>= 6.0.0)
     date (3.4.1)
     debug (1.11.0)
       irb (~> 1.10)
@@ -124,6 +140,14 @@ GEM
       logger
     faraday-net_http (3.4.1)
       net-http (>= 0.5.0)
+    ffi (1.17.2-aarch64-linux-gnu)
+    ffi (1.17.2-aarch64-linux-musl)
+    ffi (1.17.2-arm-linux-gnu)
+    ffi (1.17.2-arm-linux-musl)
+    ffi (1.17.2-arm64-darwin)
+    ffi (1.17.2-x86_64-darwin)
+    ffi (1.17.2-x86_64-linux-gnu)
+    ffi (1.17.2-x86_64-linux-musl)
     globalid (1.3.0)
       activesupport (>= 6.1)
     haml (6.3.0)
@@ -145,6 +169,9 @@ GEM
       ruby_parser (~> 3.5)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
+    image_processing (1.14.0)
+      mini_magick (>= 4.9.5, < 6)
+      ruby-vips (>= 2.0.17, < 3)
     importmap-rails (2.2.2)
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
@@ -157,6 +184,10 @@ GEM
     jbuilder (2.14.1)
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
+    jquery-rails (4.6.0)
+      rails-dom-testing (>= 1, < 3)
+      railties (>= 4.2.0)
+      thor (>= 0.14, < 2.0)
     json (2.15.0)
     jwt (3.1.2)
       base64
@@ -182,8 +213,10 @@ GEM
       net-imap
       net-pop
       net-smtp
-    marcel (1.1.0)
+    marcel (1.0.4)
     matrix (0.4.3)
+    mini_magick (5.3.1)
+      logger
     mini_mime (1.1.5)
     minitest (5.25.5)
     mongo (2.21.3)
@@ -258,6 +291,7 @@ GEM
     parser (3.3.9.0)
       ast (~> 2.4.1)
       racc
+    popper_js (2.11.8)
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
@@ -380,6 +414,9 @@ GEM
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
     ruby-progressbar (1.13.0)
+    ruby-vips (2.2.5)
+      ffi (~> 1.12)
+      logger
     ruby_parser (3.21.1)
       racc (~> 1.5)
       sexp_processor (~> 4.16)
@@ -402,6 +439,7 @@ GEM
       net-sftp (>= 2.1.2)
       net-ssh (>= 2.8.0)
       ostruct
+    ssrf_filter (1.3.0)
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
     stringio (3.1.7)
@@ -456,8 +494,13 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
+  bootstrap
+  bootstrap_icons_rails
   brakeman
   capybara
+  carrierwave (~> 3.0)
+  carrierwave-mongoid
+  cssbundling-rails
   debug
   devise
   dotenv
@@ -465,7 +508,9 @@ DEPENDENCIES
   html2haml
   importmap-rails
   jbuilder
+  jquery-rails
   kamal
+  mini_magick
   mongoid
   omniauth
   omniauth-google-oauth2
