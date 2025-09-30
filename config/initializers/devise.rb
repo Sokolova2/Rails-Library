@@ -4,7 +4,7 @@ Devise.setup do |config|
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
   config.omniauth :google_oauth2,
                   ENV.fetch('GOOGLE_OAUTH_CLIENT_ID'),
-                          ENV.fetch('GOOGLE_OAUTH_CLIENT_SECRET')
+                  ENV.fetch('GOOGLE_OAUTH_CLIENT_SECRET')
 
   require 'devise/orm/mongoid'
 
