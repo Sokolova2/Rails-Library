@@ -1,25 +1,43 @@
-%h2 Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = render 'devise/shared/error_messages', resource: resource
-  .field
-    = f.label 'Login'
-    %br/
-    = f.email_field :login, placeholder: 'Login to your account'
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: 'email'
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: 'new-password'
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: 'new-password'
-  .actions
-    = f.submit 'Sign up'
-= render 'devise/shared/links'
+.bg-dark.min-vh-100
+  .container
+    .d-flex.justify-content-center
+      .d-block.shadow.rounded-5.p-5.mt-5
+        %h2.text-center.mb-3.text-light Sign up
+        .d-flex.justify-content-center
+          = render 'devise/shared/oauth_google'
+        = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+          = render 'devise/shared/error_messages', resource: resource
+          .mb-3.mt-3
+            .field
+              = f.label :login, class: 'form-label text-light'
+              %br/
+              = f.text_field :login, placeholder: 'Login to your account', class: 'form-control'
+          .mb-3
+            .field
+              = f.label :email, class: 'form-label text-light'
+              %br/
+              = f.email_field :email, autofocus: true, autocomplete: 'email', placeholder: 'example@gmail.com', class: 'form-control bg-secondary'
+          .mb-3
+            .field
+              = f.label :password, class: 'form-label text-light'
+              - if @minimum_password_length
+                %em.text-light
+                  (#{@minimum_password_length} characters minimum)
+              %br/
+              = f.password_field :password, autocomplete: 'new-password', placeholder: 'password', class: 'form-control'
+          .mb-3
+            .field
+              = f.label :password_confirmation, class: 'form-label text-light'
+              %br/
+              = f.password_field :password_confirmation, autocomplete: 'new-password', placeholder: 'password', class: 'form-control bg-secondary'
+          .mb-3
+            .field
+              = f.label :avatar, class: 'form-label text-light'
+              %br
+              = f.file_field :avatar, autocomplete: 'avatar', class: 'form-control'
+          .mb-3
+            .actions
+              = f.submit 'Sign up', class: 'btn btn-secondary w-100 mt-3'
+        .d-flex.justify-content-center
+          %p.pe-1.text-light Already have an account?
+          = render 'devise/shared/links'
