@@ -2,7 +2,7 @@
   .container
     .d-flex.justify-content-center
       .d-block.shadow.rounded-5.p-5.mt-5
-        %h2.text-center.mb-3.text-light Sign up
+        %h2.text-center.mb-3.text-light.h2 Sign up
         .d-flex.justify-content-center
           = render 'devise/shared/oauth_google'
         = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
@@ -34,7 +34,7 @@
             .field
               = f.label :gender, class: 'form-label text-light'
               %br
-              = f.select :gender, options_for_select([[''], ['male'], ['female']]), autocomplete: 'avatar', class: 'form-control'
+              = f.select :gender, options_for_select([[''], ['male'], ['female']]), {},  { class: 'form-select' }
           .mb-3
             .field
               = f.label :avatar, class: 'form-label text-light'

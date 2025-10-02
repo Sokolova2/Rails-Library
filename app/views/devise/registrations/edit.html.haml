@@ -1,36 +1,69 @@
-%h2
-  Edit #{resource_name.to_s.humanize}
-= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-    %div
-      Currently waiting confirmation for: #{resource.unconfirmed_email}
-  .field
-    = f.label :password
-    %i (leave blank if you don't want to change it)
-    %br/
-    = f.password_field :password, autocomplete: "new-password"
-    - if @minimum_password_length
-      %br/
-      %em
-        = @minimum_password_length
-        characters minimum
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .field
-    = f.label :current_password
-    %i (we need your current password to confirm your changes)
-    %br/
-    = f.password_field :current_password, autocomplete: "current-password"
-  .actions
-    = f.submit "Update"
-%h3 Cancel my account
-%div
-  Unhappy? #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete}
-= link_to "Back", :back
+%h2.h2.text-center.mt-3
+  Edit Profile
+= link_to :back, class: "h5 ms-5 fs-2" do
+  %i.bi.bi-arrow-left
+.container.d-flex.justify-content-between.gap-4
+  .d-block
+    .container.shadow.rounded-4.p-2
+      .text-center
+        = image_tag current_user.avatar.url, class: 'roded-circle w-50 h-50 mt-3'
+      .text-start.ms-3
+        %p.mb-4.mt-3= "Login: #{current_user.login}"
+        %p.mb-4= "Email: #{current_user.email}"
+        %p.mb-4= "Language: #{current_user.language}"
+        -if current_user.gender.present?
+          %p.mb-4= "Gender: #{current_user.gender}"
+        %p.mb-4= "Created account: #{current_user.created_at.strftime('%-d %B %Y')}"
+        %h3.mb-4 Cancel my account
+        %div.mb-4
+          = button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: 'btn btn-secondary'
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+    = render "devise/shared/error_messages", resource: resource
+    .mb-3
+      .field
+        = f.label :avatar, class: 'form-label'
+        %br
+        = f.file_field :avatar, autocomplete: 'avatar', class: 'form-control'
+    .mb-3
+      .field
+        = f.label :login, class: 'form-label'
+        %br/
+        = f.text_field :login, class: 'form-control'
+    .mb-3
+      .field
+        = f.label :email, class: 'form-label'
+        %br/
+        = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'
+      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+        %div
+          Currently waiting confirmation for: #{resource.unconfirmed_email}
+    .mb-3
+      .field
+        = f.label :password, class: 'form-label'
+        %i (leave blank if you don't want to change it)
+        - if @minimum_password_length
+          %em
+            = @minimum_password_length
+            characters minimum
+        %br/
+        = f.password_field :password, autocomplete: "new-password", class: 'form-control'
+    .mb-3
+      .field
+        = f.label :password_confirmation, class: 'form-label'
+        %br/
+        = f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control'
+    .mb-3
+      .field
+        = f.label :current_password, class: 'form-label'
+        %i (we need your current password to confirm your changes)
+        %br/
+        = f.password_field :current_password, autocomplete: "current-password", class: 'form-control'
+    .mb-3
+      .field
+        = f.label :gender, class: 'form-label'
+        %br/
+        = f.select :gender, options_for_select([[''], ['male'], ['female']]), {},  { class: 'form-select' }
+    .mb-3
+      .actions
+        = f.submit "Update", class: 'btn btn-secondary'
+
