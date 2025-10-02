@@ -5,6 +5,8 @@ class User
 
   mount_uploader :avatar, AvatarUploader
 
+  before_create :set_random_avatar
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2]
@@ -19,10 +21,29 @@ class User
     def user_params(user, auth, _lang)
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
-      user.login = auth.info.login
+      user.login = auth.info.email
       user.avatar = auth.info.image
       user.gender = auth.info.gender
       user.language = I18n.default_locale
+    end
+  end
+
+  def set_random_avatar
+    return if avatar.present?
+
+    gender = self.gender == 'female' ? 'female' : 'male'
+    avatar = Dir.glob(Rails.root.join('app', 'assets', 'images', gender, '*.png'))
+
+    random_avatar = avatar.sample
+    self.avatar = File.open(random_avatar)
+    self.avatar_filename = File.basename(random_avatar)
+
+    if self.gender == nil
+      avatar = Dir.glob(Rails.root.join('app', 'assets', 'images', 'animal', '*.png'))
+
+      random_avatar = avatar.sample
+      self.avatar = File.open(random_avatar)
+      self.avatar_filename = File.basename(random_avatar)
     end
   end
 

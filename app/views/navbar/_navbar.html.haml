@@ -1,31 +1,36 @@
 %nav.navbar.navbar-expand-lg.bg-body-tertiary
   .container-fluid
-    %a.navbar-brand{:href => root_path} Library
-    %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarSupportedContent", "data-bs-toggle" => "collapse", :type => "button"}
-      %span.navbar-toggler-icon
-    #navbarSupportedContent.collapse.navbar-collapse
-      %ul.navbar-nav.me-auto.mb-2.mb-lg-0
-        %li.nav-item
-          %a.nav-link.active{"aria-current" => "page", :href => root_path} Home
-        %li.nav-item
-          %a.nav-link{:href => "#"} Link
-        %li.nav-item.dropdown
-          %a.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
-            Dropdown
-          %ul.dropdown-menu
-            %li
-              %a.dropdown-item{:href => "#"} Action
-            %li
-              %a.dropdown-item{:href => "#"} Another action
-            %li
-              %hr.dropdown-divider/
-            %li
-              %a.dropdown-item{:href => "#"} Something else here
-      %form.d-flex{:role => "search"}
-        %input.form-control.me-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
-        %button.btn.btn-outline-success{:type => "submit"} Search
-
--if user_signed_in?
-  .d-flex
-    %p= current_user.login
-    = avatar_image(current_user)
+    .d-flex.gap-1.align-items-center
+      %a.navbar-brand.align-items-start{:href => root_path} Library
+      %button.navbar-toggler{'aria-controls' => 'navbarOffcanvasLg', 'aria-label' => 'Toggle navigation', 'data-bs-target' => '#navbarOffcanvasLg', 'data-bs-toggle' => 'offcanvas', :type => 'button'}
+        %span.navbar-toggler-icon
+      #navbarOffcanvasLg.offcanvas.offcanvas-end.bg-light{'aria-labelledby' => 'navbarOffcanvasLgLabel', :tabindex => '-1'}
+        .offcanvas-body
+          %ul.navbar-nav.me-auto.mb-2.mb-lg-0
+            %li.nav-item
+              = button_to 'Home', root_path, method: :get, class: 'btn btn-outline-none'
+            %li.nav-item
+              -unless user_signed_in?
+                = button_to 'Sign in', new_user_session_path, method: :get, class: 'btn btn-outline-none'
+            %li.nav-item
+              - if user_signed_in?
+                = button_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-outline-none'
+              - else
+                = button_to 'Sign up', new_user_registration_path, method: :get, class: 'btn btn-outline-none'
+            %li.nav-item.dropdown
+          %form.d-flex{:role => "search"}
+            %input.form-control.me-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
+            %button.btn.btn-outline-success{:type => "submit"} Search
+    -if user_signed_in?
+      .dropdown.bg-light
+        %button.btn.btn-outline-secondary{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :type => "button"}
+          .d-flex.align-items-center.gap-2
+            %p= current_user.login
+            = image_tag current_user.avatar.url, class: "rounded-circle avatar"
+        %ul.dropdown-menu.bg-light
+          .d-flex.justify-content-center
+            .d-block
+              %li
+                = button_to 'Edit profile', edit_user_registration_path, method: :get, class: 'btn btn-outline-none'
+              %li
+                = button_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-outline-none'

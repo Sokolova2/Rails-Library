@@ -2,7 +2,7 @@
   .container
     .d-flex.justify-content-center
       .d-block.shadow.rounded-5.p-5.mt-5
-        %h2.text-center.mb-3.text-light Forgot your password?
+        %h2.text-center.mb-3.text-light.h2 Forgot your password?
         = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
           = render "devise/shared/error_messages", resource: resource
           .field

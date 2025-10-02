@@ -2,7 +2,7 @@
   .container
     .d-flex.justify-content-center
       .d-block.shadow.rounded-5.p-5.mt-5
-        %h2.text-center.mb-3.text-light Log in
+        %h2.text-center.mb-3.text-light.h2 Log in
         .d-flex.justify-content-center
           = render 'devise/shared/oauth_google'
         = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
