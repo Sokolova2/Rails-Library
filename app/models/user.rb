@@ -21,6 +21,7 @@ class User
       user.password = Devise.friendly_token[0, 20]
       user.login = auth.info.login
       user.avatar = auth.info.image
+      user.gender = auth.info.gender
       user.language = I18n.default_locale
     end
   end
@@ -38,6 +39,7 @@ class User
   ## Rememberable
   field :remember_created_at, type: Time
 
+  field :gender, type: String
   field :avatar, type: String
   field :language, type: String
 

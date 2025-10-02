@@ -32,6 +32,11 @@
               = f.password_field :password_confirmation, autocomplete: 'new-password', placeholder: 'password', class: 'form-control bg-secondary'
           .mb-3
             .field
+              = f.label :gender, class: 'form-label text-light'
+              %br
+              = f.select :gender, options_for_select([[''], ['male'], ['female']]), autocomplete: 'avatar', class: 'form-control'
+          .mb-3
+            .field
               = f.label :avatar, class: 'form-label text-light'
               %br
               = f.file_field :avatar, autocomplete: 'avatar', class: 'form-control'
