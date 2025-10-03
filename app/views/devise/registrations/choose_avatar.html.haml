@@ -1,0 +1,16 @@
+.container
+  .text-center.current-avatar
+    = image_tag current_user.avatar.url, class: 'mt-5 mb-4 w-25 h-25'
+.container
+  %nav
+    #nav-tab.nav.nav-tabs{ :role => "tablist" }
+      %button#nav-animal-tab.nav-link.active{ "aria-controls" => "nav-animal", "aria-selected" => "true", "data-bs-target" => "#nav-animal", "data-bs-toggle" => "tab", :role => "tab", :type => "button" } Animal
+      %button#nav-female-tab.nav-link{ "aria-controls" => "nav-female", "aria-selected" => "false", "data-bs-target" => "#nav-female", "data-bs-toggle" => "tab", :role => "tab", :type => "button" } Women
+      %button#nav-male-tab.nav-link{ "aria-controls" => "nav-male", "aria-selected" => "false", "data-bs-target" => "#nav-male", "data-bs-toggle" => "tab", :role => "tab", :type => "button" } Men
+    #nav-tabContent.tab-content
+      #nav-animal.tab-pane.fade.show.active{ "aria-labelledby" => "nav-animal-tab", :role => "tabpanel" }
+        = render partial: 'devise/registrations/tab_content', locals: { gender: 'animal' }
+      #nav-female.tab-pane.fade{ "aria-labelledby" => "nav-female-tab", :role => "tabpanel" }
+        = render partial: 'devise/registrations/tab_content', locals: { gender: 'female' }
+      #nav-male.tab-pane.fade{ "aria-labelledby" => "nav-male-tab", :role => "tabpanel" }
+        = render partial: 'devise/registrations/tab_content', locals: { gender: 'male' }
