@@ -333,6 +333,8 @@ GEM
       activesupport (= 8.0.3)
       bundler (>= 1.15.0)
       railties (= 8.0.3)
+    rails-bootstrap-tabs (0.3.4)
+      rails (>= 3.2.11)
     rails-dom-testing (2.3.0)
       activesupport (>= 5.0.0)
       minitest
@@ -518,6 +520,7 @@ DEPENDENCIES
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.2)
+  rails-bootstrap-tabs (~> 0.3.4)
   rspec-rails
   rubocop
   rubocop-haml
