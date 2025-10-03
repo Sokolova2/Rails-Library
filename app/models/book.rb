@@ -7,7 +7,6 @@ class Book
   field :title, type: String
   field :descriptions, type: String
   field :author, type: String
-  field :status, type: String
-  field :borrowedBy, type: String
-  field :image, type: String
+  field :status, type: String, default: 'Open'
+  field :borrowed_by, type: String
 end
