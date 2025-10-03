@@ -6,7 +6,8 @@
   .d-block
     .container.shadow.rounded-4.p-2
       .text-center
-        = image_tag current_user.avatar.url, class: 'roded-circle w-50 h-50 mt-3'
+        = link_to choose_avatar_path do
+          = image_tag current_user.avatar.url, class: 'roded-circle w-50 h-50 mt-3'
       .text-start.ms-3
         %p.mb-4.mt-3= "Login: #{current_user.login}"
         %p.mb-4= "Email: #{current_user.email}"

@@ -1,0 +1,8 @@
+= form_with(model: @book, method: 'post') do |f|
+  .field
+    = f.text_field :title, placeholder: 'title'
+    = f.text_field :descriptions, placeholder: 'descriptions'
+    = f.text_field :author, placeholder: 'author'
+    = f.file_field :image
+  .actions
+    = f.submit 'Create Book'

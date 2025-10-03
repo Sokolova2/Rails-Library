@@ -6,5 +6,13 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     sessions: 'users/sessions'
   }
+
+  devise_scope :user do
+    get 'choose_avatar', to: 'users/registrations#choose_avatar', as: :choose_avatar
+    put 'choose_avatar', to: 'users/registrations#choose_avatar'
+  end
+
   root to: 'home#index'
+
+  resources :books
 end
