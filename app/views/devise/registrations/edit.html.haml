@@ -3,11 +3,11 @@
 = link_to root_path, class: "h5 ms-5 fs-2" do
   %i.bi.bi-arrow-left
 .container.d-flex.justify-content-between.gap-4
-  .d-block
-    .container.shadow.rounded-4.p-2
+  .d-block.w-50
+    .container.shadow.rounded-4.ps-3.pb-3.pe-5
       .text-center
         = link_to choose_avatar_path do
-          = image_tag current_user.avatar.url, class: 'roded-circle w-50 h-50 mt-3'
+          = image_tag current_user.avatar.url, class: 'rounded-circle edit-avatar mt-3'
       .text-start.ms-3
         %p.mb-4.mt-3= "Login: #{current_user.login}"
         %p.mb-4= "Email: #{current_user.email}"
@@ -20,11 +20,6 @@
           = button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: 'btn btn-secondary'
   = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
     = render "devise/shared/error_messages", resource: resource
-    .mb-3
-      .field
-        = f.label :avatar, class: 'form-label'
-        %br
-        = f.file_field :avatar, autocomplete: 'avatar', class: 'form-control'
     .mb-3
       .field
         = f.label :login, class: 'form-label'

@@ -1,4 +1,4 @@
 .d-flex.justify-content-center.flex-wrap.mt-3
   - @avatars[gender].each do |avatar|
-    = button_to choose_avatar_path, method: :put, params: {avatar: "#{gender}/#{File.basename(avatar)}"}, class: 'btn btn-border-none' do
+    = button_to update_avatar_users_path, method: :put, params: {avatar: "#{gender}/#{File.basename(avatar)}"}, class: 'btn btn-border-none' do
       = image_tag("#{gender}/#{File.basename(avatar)}", class: 'avatars')
