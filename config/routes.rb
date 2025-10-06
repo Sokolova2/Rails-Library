@@ -7,12 +7,10 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
-  devise_scope :user do
-    get 'choose_avatar', to: 'users/registrations#choose_avatar', as: :choose_avatar
-    put 'choose_avatar', to: 'users/registrations#choose_avatar'
-  end
-
   root to: 'home#index'
 
   resources :books
+
+  get 'update_avatar_users', to: 'update_avatar_users#choose_avatar', as: :choose_avatar
+  put 'update_avatar_users', to: 'update_avatar_users#choose_avatar'
 end
