@@ -22,28 +22,8 @@ class User
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
       user.login = auth.info.email
-      user.avatar = auth.info.image
       user.gender = auth.info.gender
       user.language = I18n.default_locale
-    end
-  end
-
-  def set_random_avatar
-    return if avatar.present?
-
-    gender = self.gender == 'female' ? 'female' : 'male'
-    avatar = Dir.glob(Rails.root.join('app', 'assets', 'images', gender, '*.png'))
-
-    random_avatar = avatar.sample
-    self.avatar = File.open(random_avatar)
-    self.avatar_filename = File.basename(random_avatar)
-
-    if self.gender == nil
-      avatar = Dir.glob(Rails.root.join('app', 'assets', 'images', 'animal', '*.png'))
-
-      random_avatar = avatar.sample
-      self.avatar = File.open(random_avatar)
-      self.avatar_filename = File.basename(random_avatar)
     end
   end
 
@@ -65,4 +45,10 @@ class User
   field :language, type: String
 
   include Mongoid::Timestamps
+
+  private
+
+  def set_random_avatar
+    SetRandomAvatarService.new(self).set_random_avatar
+  end
 end
