@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :likes
     resources :comments
     put 'update_status', to: 'update_book_status#update'
+    resource :ratings
   end
 
   resources :history
