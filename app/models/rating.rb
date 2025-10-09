@@ -1,9 +1,9 @@
-class History
+class Rating
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :status, type: String
+  field :score, :type => Integer
 
-  belongs_to :book
   belongs_to :user
+  belongs_to :book
 end
