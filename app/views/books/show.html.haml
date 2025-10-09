@@ -1,0 +1,31 @@
+= render 'navbar/navbar'
+.ms-4
+  = image_tag @book.image.url
+  %p= @book.title
+  %p= @book.descriptions
+  %p= @book.author
+  %p= @book.status
+  - if @book.user_id.present?
+    %p= @book.user.login
+  .d-flex.gap-2.align-items-center
+    - if @book.likes.exists?(user_id: current_user.id)
+      = button_to book_like_path(@book), method: :delete, class: 'btn btn-outline-dark' do
+        %i.bi.bi-heart-fill
+    - else
+      = button_to book_likes_path(@book), method: :post, class: 'btn btn-outline-dark' do
+        %i.bi.bi-heart
+    %p.fs-4= "Likes: #{@book.likes.count}"
+
+  = form_with(url: book_comments_path(@book), location: true, method: :post) do |f|
+    = f.text_field :content
+    = button_tag do
+      %i.bi.bi-arrow-up-circle-fill
+
+  - @book.comments.each do |comment|
+    .d-flex.gap-1.align-items-center
+      = image_tag comment.user.avatar.url, class: 'avatar'
+      %p= comment.user.login
+    %p= comment.content
+
+-unless @book.status == 'Closed'
+  = button_to 'Get the book', book_update_status_path(@book), method: :put

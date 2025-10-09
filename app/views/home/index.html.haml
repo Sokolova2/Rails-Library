@@ -1,3 +1,16 @@
 = render 'navbar/navbar'
-%p Hello!
-= button_to 'Books', books_path, method: :get
+.container.d-flex.gap-3.flex-wrap
+  - @books.each do |book|
+    = link_to book_path(book), class: 'text-decoration-none' do
+      .card.mb-3.mt-3.border-0{ style: 'max-width: 185px' }
+        .text-center.mt-4
+          = image_tag book.image.url, class: 'book-image rounded-4'
+        .card-body.font
+          %h5.card-title.text-wrap= book.title
+          %p.card-text.mb-2.text-wrap= "Author: #{book.author}"
+          %p.card-text.text-wrap
+            %small.text-body-secondary= "Status: #{book.status}"
+          - if book.user_id.present?
+            %p.card-text.text-wrap
+              %small.text-center= book.user.login
+
