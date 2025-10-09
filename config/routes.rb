@@ -9,7 +9,13 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
 
-  resources :books
+  resources :books do
+    resources :likes
+    resources :comments
+    put 'update_status', to: 'update_book_status#update'
+  end
+
+  resources :history
 
   get 'update_avatar_users', to: 'update_avatar_users#choose_avatar', as: :choose_avatar
   put 'update_avatar_users', to: 'update_avatar_users#choose_avatar'
