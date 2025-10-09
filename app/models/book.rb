@@ -7,6 +7,8 @@ class Book
   field :title, type: String
   field :descriptions, type: String
   field :author, type: String
-  field :status, type: String, default: 'Open'
-  field :borrowed_by, type: String
+  field :status
+  has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  belongs_to :user
 end

@@ -46,6 +46,10 @@ class User
 
   include Mongoid::Timestamps
 
+  has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :books, dependent: :destroy
+
   private
 
   def set_random_avatar
