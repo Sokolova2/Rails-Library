@@ -18,6 +18,10 @@ Rails.application.routes.draw do
 
   resources :history
 
+  resources :tops, only: %i[index]
+
+  resource :favorites
+
   get 'update_avatar_users', to: 'update_avatar_users#choose_avatar', as: :choose_avatar
   put 'update_avatar_users', to: 'update_avatar_users#choose_avatar'
 end
