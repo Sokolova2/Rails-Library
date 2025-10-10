@@ -3,15 +3,16 @@
     .d-flex.align-items-center.justify-content-between
       %a.navbar-brand.align-items-start{:href => root_path}
         = image_tag 'library-high-resolution-logo-transparent.png', class: 'navbar-logo'
-      = button_to 'Home', root_path, method: :get, class: 'btn btn-outline-none'
-      -unless user_signed_in?
-        = button_to 'Sign in', new_user_session_path, method: :get, class: 'btn btn-outline-none'
-    .d-flex.align-items-center.gap-1
+      = button_to 'Catalogs', books_path, method: :get, class: 'navbar-btn'
+      = button_to 'Tops', tops_path, method: :get, class: 'navbar-btn'
+    .d-flex.align-items-center
       = render 'navbar/search'
       - if user_signed_in? && current_user.admin
         = button_to new_book_path, method: :get, class: 'btn btn-outline-none background-none' do
           %i.bi.bi-file-plus.fs-4
-      -# = button_to do
-      -#   %i.bi.bi-bookmark
+      = button_to favorites_path, method: :get, class: 'btn btn-outline-none background-none' do
+        %i.bi.bi-bookmark.fs-4
       -if user_signed_in?
         = render 'navbar/user_options'
+      -unless user_signed_in?
+        = button_to 'Sign in/Register', new_user_session_path, method: :get, class: 'btn btn-outline-none'

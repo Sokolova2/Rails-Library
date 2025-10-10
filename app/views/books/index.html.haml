@@ -1,0 +1,5 @@
+= render 'navbar/navbar'
+%h1 Catalog
+.container.d-flex.gap-3.flex-wrap
+  - @books.each do |book|
+    = render 'cards/cards', book: book

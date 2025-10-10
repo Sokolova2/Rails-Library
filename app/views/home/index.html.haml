@@ -1,20 +1,15 @@
 = render 'navbar/navbar'
-.container.d-flex.gap-3.flex-wrap
-  - @books.each do |book|
-    .card.mb-3.mt-3.border-0{ style: 'max-width: 185px' }
+
+.d-flex.gap-1.flex-nowrap.scrolling-wrapper
+  - @top_book.each do |book|
+    .card.mb-3.mt-3.border-0.flex-shrink-0{ style: 'max-width: 185px' }
       = link_to book_path(book), class: 'text-decoration-none' do
         .text-center.mt-4
           = image_tag book.image.url, class: 'book-image rounded-4'
       .card-body.font
         %h5.card-title.text-wrap= book.title
         %p.card-text.mb-2.text-wrap= "Author: #{book.author}"
-        %p.card-text.text-wrap
-          %small.text-body-secondary= "Status: #{book.status}"
-        - if book.user_id.present?
-          %p.card-text.text-wrap
-            %small.text-body-secondary.text-center= book.user.login
-        -if user_signed_in?
-          -if book.status == 'Closed'
-            = button_to 'Return book', book_update_status_path(book), method: :put
-          -else
-            = button_to 'Get the book', book_update_status_path(book), method: :put
+
+.container.d-flex.gap-3.flex-wrap
+  - @books.each do |book|
+    = render 'cards/cards', book: book

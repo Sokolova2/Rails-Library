@@ -1,0 +1,6 @@
+= render 'navbar/navbar'
+%h1 Favorites
+
+.container.d-flex.gap-3.flex-wrap
+  - @favorite_books.each do |book|
+    = render 'cards/cards', book: book
