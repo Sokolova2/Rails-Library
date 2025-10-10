@@ -1,21 +1,15 @@
 class RatingsController < ApplicationController
   before_action :set_book
-
+  before_action :authenticate_user!
   def create
-    unless Rating.exists?(user_id: current_user.id, book_id: @book.id)
-      @rating = Rating.create(user_id: current_user.id, book_id: @book.id, score: params[:score])
+    @rating = @book.ratings.find_or_initialize_by(user_id: current_user.id)
+    @rating.score = params[:score]
+
+    if @rating.save
+      redirect_to book_path(@book)
+    else
+      redirect_to book_path(@book), alert: @rating.errors.full_messages
     end
-
-    redirect_to book_path(@book)
-  end
-
-  def destroy
-    if Rating.exists?(user_id: current_user.id, book_id: @book.id)
-      @rating = Rating.find_by(user_id: current_user.id, book_id: @book.id)
-      @rating.destroy
-    end
-
-    redirect_to book_path(@book)
   end
 
   private
