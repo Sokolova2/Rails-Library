@@ -1,0 +1,15 @@
+- if user_signed_in?
+  = form_with(url: book_comments_path(@book), location: true, method: :post) do |f|
+    = f.text_field :content
+    = button_tag do
+      %i.bi.bi-arrow-up-circle-fill
+- else
+  .d-flex.align-items-center.gap-2
+    = button_to new_user_session_path, method: :get do
+      %input.w-100
+    %i.bi.bi-arrow-up-circle-fill
+  - @book.comments.each do |comment|
+    .d-flex.gap-1.align-items-center
+      = image_tag comment.user.avatar.url, class: 'avatar'
+      %p= comment.user.login
+    %p= comment.content

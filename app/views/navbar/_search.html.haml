@@ -1,0 +1,4 @@
+= form_with(url: root_path, method: :get, data: {turbo_frame: 'result-search', controller: 'search'}) do |f|
+  = f.text_field :search, data: {action: 'input->search#search', search_target: 'input'}, class: 'form-control'
+  = f.submit 'Search', class: 'btn btn-outline-none', hidden: true
+

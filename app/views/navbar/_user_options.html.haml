@@ -1,0 +1,20 @@
+.dropdown.border-secondary
+  %button{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :type => "button", style: 'border: none'}
+    = image_tag current_user.avatar.url, class: "rounded-circle avatar"
+  %ul.dropdown-menu.dropdown-menu-end{ style: 'width: 300px' }
+    .d-flex.justify-content-center
+      .d-block
+        %li.mt-2.mb-2
+          .d-flex.align-items-center.gap-3
+            = image_tag current_user.avatar.url, class: "rounded-circle avatar"
+            %p= current_user.login
+        %li
+          %hr.solid
+        %li.mt-2
+          = button_to 'Edit profile', edit_user_registration_path, method: :get, class: 'li-dropdown text-dark'
+        %li
+          %hr.solid
+        %li.mb-1
+          = button_to 'Sign out', destroy_user_session_path, method: :delete, class: 'li-dropdown text-dark'
+
+

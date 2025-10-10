@@ -1,0 +1,25 @@
+= render 'navbar/navbar'
+.ms-4
+  = image_tag @book.image.url
+  %p= @book.title
+  %p= @book.descriptions
+  %p= @book.author
+  %p= @book.status
+  - if @book.user_id.present?
+    %p= @book.user.login
+
+  = render 'books/likes'
+
+  = render 'books/comments'
+
+-if user_signed_in?
+  -if @book.status == 'Closed'
+    = button_to 'Return book', book_update_status_path(@book), method: :put, class: 'btn btn-dark'
+  -else
+    = button_to 'Get the book', book_update_status_path(@book), method: :put, class: 'btn btn-dark'
+
+- if @book.ratings.any?
+  %p= (@book.ratings.map(&:score).sum.to_f/ @book.ratings.count).round(2)
+  %p= "#{@book.ratings.count} vote"
+
+= render 'books/rate'
