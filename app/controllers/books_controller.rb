@@ -3,7 +3,6 @@ class BooksController < ApplicationController
   before_action :authenticate_user!, only: %i[create update destroy]
   def index
     @books = Book.all
-    @book = Book.new
   end
 
   def show; end
