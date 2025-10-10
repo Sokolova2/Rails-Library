@@ -6,7 +6,12 @@
       = button_to 'Home', root_path, method: :get, class: 'btn btn-outline-none'
       -unless user_signed_in?
         = button_to 'Sign in', new_user_session_path, method: :get, class: 'btn btn-outline-none'
-    .d-flex.align-items-center.gap-2
+    .d-flex.align-items-center.gap-1
       = render 'navbar/search'
+      - if user_signed_in? && current_user.admin
+        = button_to new_book_path, method: :get, class: 'btn btn-outline-none background-none' do
+          %i.bi.bi-file-plus.fs-4
+      -# = button_to do
+      -#   %i.bi.bi-bookmark
       -if user_signed_in?
         = render 'navbar/user_options'

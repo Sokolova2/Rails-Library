@@ -44,6 +44,7 @@ class User
   field :avatar, type: String
   field :language, type: String
 
+  field :admin, type: Boolean, default: false
   include Mongoid::Timestamps
 
   has_many :likes, dependent: :destroy
