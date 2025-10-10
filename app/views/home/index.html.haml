@@ -13,8 +13,8 @@
         - if book.user_id.present?
           %p.card-text.text-wrap
             %small.text-body-secondary.text-center= book.user.login
-
-        -if book.status == 'Closed'
-          = button_to 'Return book', book_update_status_path(book), method: :put
-        -else
-          = button_to 'Get the book', book_update_status_path(book), method: :put
+        -if user_signed_in?
+          -if book.status == 'Closed'
+            = button_to 'Return book', book_update_status_path(book), method: :put
+          -else
+            = button_to 'Get the book', book_update_status_path(book), method: :put

@@ -1,18 +1,27 @@
-%button.btn.btn-primary{"data-bs-target" => "#exampleModal", "data-bs-toggle" => "modal", :type => "button"}
-  Rate
-#exampleModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :tabindex => "-1"}
-  .modal-dialog.modal-dialog-centered
-    .modal-content
-      .modal-body
-        .d-flex.justify-content-between
-          %p Please, rate this book
-          .text-end
-            %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
-        .btn-group.me-2.flexbox-item-4.d-flex.justify-content-center
-          .bg-dark.d-flex.rounded-2
-            = button_to '1', book_ratings_path(@book), method: :post, params: { score: 1 }, class: 'btn btn-dark'
-            = button_to '2', book_ratings_path(@book), method: :post, params: { score: 2 }, class: 'btn btn-dark'
-            = button_to '3', book_ratings_path(@book), method: :post, params: { score: 3 }, class: 'btn btn-dark'
-            = button_to '4', book_ratings_path(@book), method: :post, params: { score: 4 }, class: 'btn btn-dark'
-            = button_to '5', book_ratings_path(@book), method: :post, params: { score: 5 }, class: 'btn btn-dark'
-
+- if user_signed_in?
+  %button.btn.btn-primary{"data-bs-target" => "#exampleModal", "data-bs-toggle" => "modal", :type => "button"}
+    Rate
+  #exampleModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :tabindex => "-1"}
+    .modal-dialog.modal-dialog-centered
+      .modal-content
+        .modal-body
+          .d-flex.justify-content-between
+            %p Please, rate this book
+            .text-end
+              %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
+          .btn-group.me-2.flexbox-item-4.d-flex.justify-content-center
+            = form_with url: book_ratings_path(@book), method: :post, data: {turbo_frame: 'rating', controller: 'rating'} do |f|
+              %fieldset.rating
+                %input#1star5{name: "score", type: "radio", value: "5", data: { rating_target: "input", action: "change->rating#submitRating" }}/
+                %label{:for => "1star5"}
+                %input#1star4{name: "score", type: "radio", value: "4", data: { rating_target: "input", action: "change->rating#submitRating" }}/
+                %label{:for => "1star4"}
+                %input#1star3{name: "score", type: "radio", value: "3", data: { rating_target: "input", action: "change->rating#submitRating" }}/
+                %label{:for => "1star3"}
+                %input#1star2{name: "score", type: "radio", value: "2", data: { rating_target: "input", action: "change->rating#submitRating" }}/
+                %label{:for => "1star2"}
+                %input#1star1{name: "score", type: "radio", value: "1", data: { rating_target: "input", action: "change->rating#submitRating" }}/
+                %label{:for => "1star1"}
+              = f.submit 'Rate', class: 'btn btn-dark', hidden:true
+- else
+  = button_to 'Rate', new_user_session_path, class: 'btn btn-primary'

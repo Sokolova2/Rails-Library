@@ -1,14 +1,12 @@
 %nav.navbar.navbar-expand-lg.bg-body-secondary
   .container-fluid
-    .d-flex.align-items-center
+    .d-flex.align-items-center.justify-content-between
       %a.navbar-brand.align-items-start{:href => root_path}
         = image_tag 'library-high-resolution-logo-transparent.png', class: 'navbar-logo'
       = button_to 'Home', root_path, method: :get, class: 'btn btn-outline-none'
       -unless user_signed_in?
         = button_to 'Sign in', new_user_session_path, method: :get, class: 'btn btn-outline-none'
     .d-flex.align-items-center.gap-2
-      %form.d-flex{:role => "search"}
-        %input.form-control.me-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}
-      %button.btn.btn-outline-success{:type => "submit"} Search
+      = render 'navbar/search'
       -if user_signed_in?
         = render 'navbar/user_options'

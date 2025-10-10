@@ -12,10 +12,11 @@
 
   = render 'books/comments'
 
--if @book.status == 'Closed'
-  = button_to 'Return book', book_update_status_path(@book), method: :put, class: 'btn btn-dark'
--else
-  = button_to 'Get the book', book_update_status_path(@book), method: :put, class: 'btn btn-dark'
+-if user_signed_in?
+  -if @book.status == 'Closed'
+    = button_to 'Return book', book_update_status_path(@book), method: :put, class: 'btn btn-dark'
+  -else
+    = button_to 'Get the book', book_update_status_path(@book), method: :put, class: 'btn btn-dark'
 
 - if @book.ratings.any?
   %p= (@book.ratings.map(&:score).sum.to_f/ @book.ratings.count).round(2)
