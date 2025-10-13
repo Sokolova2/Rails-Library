@@ -8,15 +8,18 @@
   - if @book.user_id.present?
     %p= @book.user.login
 
+= turbo_frame_tag 'frame1' do
   = render 'books/likes'
 
+= turbo_frame_tag 'frame2' do
   = render 'books/comments'
 
--if user_signed_in?
-  -if @book.status == 'Closed'
-    = button_to 'Return book', book_update_status_path(@book), method: :put, class: 'btn btn-dark'
-  -else
-    = button_to 'Get the book', book_update_status_path(@book), method: :put, class: 'btn btn-dark'
+= turbo_frame_tag 'frame3' do
+  -if user_signed_in?
+    -if @book.status == 'Closed'
+      = button_to 'Return book', book_update_status_path(@book), method: :put, class: 'btn btn-dark'
+    -else
+      = button_to 'Get the book', book_update_status_path(@book), method: :put, class: 'btn btn-dark'
 
 - if @book.ratings.any?
   %p= (@book.ratings.map(&:score).sum.to_f/ @book.ratings.count).round(2)
@@ -26,9 +29,12 @@
 
 = render 'books/edit_books'
 
-- if @book.favorites.exists?(user_id: current_user.id)
-  = button_to favorites_path(book_id: @book.id), method: :delete do
-    %i.bi.bi-bookmark-dash
-- else
-  = button_to favorites_path(book_id: @book.id), method: :post do
-    %i.bi.bi-bookmark-plus
+= turbo_frame_tag 'frame4' do
+  = render 'books/favorites'
+
+- if @book.views.present?
+  .d-flex.gap-1
+    %i.bi.bi-eye.fs-4
+    %p= @book.views
+
+= render 'books/history'

@@ -1,0 +1,8 @@
+= render 'navbar/navbar'
+
+= button_to message_path(@messages), method: :delete do
+  %i.bi.bi-trash
+
+- @messages.each do |message|
+  %p System
+  %p= message.content

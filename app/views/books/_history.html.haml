@@ -1,0 +1,7 @@
+- if @book.histories.present?
+  - @book.histories.order_by(created_at: :desc).limit(5).each do |history|
+    %p= "Took: #{history.user.login}"
+    %p= "Date: #{history.created_at.strftime('%Y-%m-%d %H:%M')}"
+    %p= "Return: #{history.user.login}"
+    %p= "Date: #{history.updated_at.strftime('%Y-%m-%d %H:%M')}"
+

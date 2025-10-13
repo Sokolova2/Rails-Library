@@ -1,24 +1,27 @@
-.card.mb-3.mt-3.border-0{ style: 'max-width: 185px' }
-  = link_to book_path(book), class: 'text-decoration-none' do
-    .text-center.mt-4
-      = image_tag book.image.url, class: 'book-image rounded-4'
-  .card-body.font
-    %h5.card-title.text-wrap= book.title
-    %p.card-text.mb-2.text-wrap= "Author: #{book.author}"
-    %p.card-text.text-wrap
-      %small.text-body-secondary= "Status: #{book.status}"
-    - if book.user_id.present?
+= turbo_frame_tag "book_#{book.id}" do
+  .card.mb-3.mt-3.border-0{ style: 'max-width: 185px' }
+    = link_to book_path(book), class: 'text-decoration-none' do
+      .text-center.mt-4
+        = image_tag book.image.url, class: 'book-image rounded-4'
+    .card-body.font
+      %h5.card-title.text-wrap= book.title
+      %p.card-text.mb-2.text-wrap= "Author: #{book.author}"
       %p.card-text.text-wrap
-        %small.text-body-secondary.text-center= book.user.login
-    -if user_signed_in?
-      .d-flex.align-items-center.gap-1
-        -if book.status == 'Closed'
-          = button_to 'Return book', book_update_status_path(book), method: :put
-        -else
-          = button_to 'Get the book', book_update_status_path(book), method: :put
-      - if book.favorites.exists?(user_id: current_user.id)
-        = button_to favorites_path(book_id: book.id), method: :delete do
-          %i.bi.bi-bookmark-dash
-      - else
-        = button_to favorites_path(book_id: book.id), method: :post do
-          %i.bi.bi-bookmark-plus
+        %small.text-body-secondary= "Status: #{book.status}"
+      - if book.user_id.present?
+        %p.card-text.text-wrap
+          %small.text-body-secondary.text-center= book.user.login
+      -if user_signed_in?
+        .d-flex.align-items-center.gap-1
+          -if book.status == 'Closed'
+            = button_to 'Return book', book_update_status_path(book), method: :put
+          -else
+            = button_to 'Get the book', book_update_status_path(book), method: :put
+          - if book.favorites.exists?(user_id: current_user.id)
+            = button_to favorites_path(book_id: book.id), method: :delete do
+              %i.bi.bi-bookmark-dash
+          - else
+            = button_to favorites_path(book_id: book.id), method: :post do
+              %i.bi.bi-bookmark-plus
+      - if user_signed_in? && current_user.admin
+        = button_to 'Delete', book_path(book), method: :delete, data: { turbo: false, confirm: 'Are you sure you want to delete this book?' }, class: 'btn btn-dark'

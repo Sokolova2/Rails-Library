@@ -1,9 +1,11 @@
 = render 'navbar/navbar'
 = form_with(model: @book, method: 'post') do |f|
+  = render 'books/books_error_message'
   .field
     = f.text_field :title, placeholder: 'title'
     = f.text_field :descriptions, placeholder: 'descriptions'
     = f.text_field :author, placeholder: 'author'
+    = f.text_field :genre, placeholder: 'genre'
     = f.file_field :image
   .actions
     = f.submit 'Create Book'

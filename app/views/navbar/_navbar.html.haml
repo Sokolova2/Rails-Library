@@ -12,7 +12,16 @@
           %i.bi.bi-file-plus.fs-4
       = button_to favorites_path, method: :get, class: 'btn btn-outline-none background-none' do
         %i.bi.bi-bookmark.fs-4
+      = link_to messages_path do
+        - unread_message = current_user.messages.where(read: false).count
+        - if unread_message == 0
+          .btn.btn-light.rounded-circle
+            %i.bi.bi-bell.fs-4
+        - if unread_message > 0
+          .d-flex.btn.btn-danger.rounded-circle
+            %i.bi.bi-bell.fs-4
+            %p.fs-5= unread_message
       -if user_signed_in?
         = render 'navbar/user_options'
       -unless user_signed_in?
-        = button_to 'Sign in/Register', new_user_session_path, method: :get, class: 'btn btn-outline-none'
+        = button_to 'Sign in/Register', new_user_session_path, method: :get, class: 'btn btn-dark'
