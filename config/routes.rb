@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   resource :favorites
 
+  resources :messages, only: %i[index destroy]
+
   get 'update_avatar_users', to: 'update_avatar_users#choose_avatar', as: :choose_avatar
   put 'update_avatar_users', to: 'update_avatar_users#choose_avatar'
 end
