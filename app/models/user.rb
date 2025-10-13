@@ -53,6 +53,8 @@ class User
   has_many :histories, dependent: :destroy
   has_many :ratings, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :impressions, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
   private
 
