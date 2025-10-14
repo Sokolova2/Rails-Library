@@ -1,6 +1,7 @@
-= render 'navbar/navbar'
-%h1 Tops
+= turbo_frame_tag 'frame1' do
+  = render 'navbar/navbar'
+  %h1 Tops
 
-.container.d-flex.gap-3.flex-wrap
-  -@top_book.each do |book|
-    = render 'cards/cards', book: book
+  .container.d-flex.gap-3.flex-wrap
+    -@top_book.each do |book|
+      = render 'cards/cards', book: book

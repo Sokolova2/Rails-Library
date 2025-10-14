@@ -8,13 +8,13 @@
   - if @book.user_id.present?
     %p= @book.user.login
 
-= turbo_frame_tag 'frame1' do
+= turbo_frame_tag 'frame2' do
   = render 'books/likes'
 
-= turbo_frame_tag 'frame2' do
+= turbo_frame_tag 'frame3' do
   = render 'books/comments'
 
-= turbo_frame_tag 'frame3' do
+= turbo_frame_tag 'frame4' do
   -if user_signed_in?
     -if @book.status == 'Closed'
       = button_to 'Return book', book_update_status_path(@book), method: :put, class: 'btn btn-dark'
@@ -29,7 +29,7 @@
 
 = render 'books/edit_books'
 
-= turbo_frame_tag 'frame4' do
+= turbo_frame_tag 'frame5' do
   = render 'books/favorites'
 
 - if @book.views.present?

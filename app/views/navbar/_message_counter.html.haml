@@ -1,0 +1,9 @@
+- if user_signed_in?
+  - unread_message = current_user.messages.where(read: false).count
+  - if unread_message == 0
+    .btn.btn-light.rounded-circle
+      %i.bi.bi-bell.fs-4
+  - if unread_message > 0
+    .d-flex.btn.btn-danger.rounded-circle
+      %i.bi.bi-bell.fs-4
+      %p.fs-5= unread_message

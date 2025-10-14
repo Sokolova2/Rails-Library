@@ -1,15 +1,14 @@
 = render 'navbar/navbar'
-= turbo_frame_tag 'frame1' do
-  .d-flex.gap-1.flex-nowrap.scrolling-wrapper
-    - @top_book.each do |book|
-      .card.mb-3.mt-3.border-0.flex-shrink-0{ style: 'max-width: 185px' }
-        = link_to book_path(book), class: 'text-decoration-none' do
-          .text-center.mt-4
-            = image_tag book.image.url, class: 'book-image rounded-4'
-        .card-body.font
-          %h5.card-title.text-wrap= book.title
-          %p.card-text.mb-2.text-wrap= "Author: #{book.author}"
+.d-flex.gap-1.flex-nowrap.scrolling-wrapper
+  - @top_book.each do |book|
+    .card.mb-3.mt-3.border-0.flex-shrink-0{ style: 'max-width: 185px' }
+      = link_to book_path(book), class: 'text-decoration-none' do
+        .text-center.mt-4
+          = image_tag book.image.url, class: 'book-image rounded-4'
+      .card-body.font
+        %h5.card-title.text-wrap= book.title
+        %p.card-text.mb-2.text-wrap= "Author: #{book.author}"
 
-  .container.d-flex.gap-3.flex-wrap
-    - @books.each do |book|
-      = render 'cards/cards', book: book
+.container.d-flex.gap-3.flex-wrap
+  - @books.each do |book|
+    = render 'cards/cards', book: book, data: { turbo_frame: 'frame2' }
