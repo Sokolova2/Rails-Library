@@ -4,7 +4,7 @@
       .d-block.shadow.rounded-5.p-5.mt-5
         %h2.text-center.mb-3.text-light.h2 Log in
         .d-flex.justify-content-center
-          = render 'devise/shared/oauth_google'
+          = render 'devise/shared/oauth_google', resource: resource, resource_name: resource_name, devise_mapping: devise_mapping
         = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
           .mb-3.mt-3
             .field
