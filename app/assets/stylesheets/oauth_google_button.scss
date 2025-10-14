@@ -3,18 +3,17 @@
   -webkit-user-select: none;
   -ms-user-select: none;
   -webkit-appearance: none;
-  background-color: WHITE;
+  background-color: rgb(0, 51, 189);
   background-image: none;
   border: 1px solid #747775;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  color: #1f1f1f;
+  color: #FFFFFF;
   cursor: pointer;
-  font-family: 'Roboto', arial, sans-serif;
   font-size: 25px;
-  height: 42px;
+  height: 45px;
   letter-spacing: 0.25px;
   outline: none;
   overflow: hidden;
@@ -31,8 +30,8 @@
 }
 
 .gsi-material-button .gsi-material-button-icon {
-  height: 24px;
-  margin-right: 12px;
+  height: 25px;
+  margin-right: 2px;
   min-width: 20px;
   width: 24px;
 }
@@ -54,12 +53,12 @@
 .gsi-material-button .gsi-material-button-contents {
   -webkit-flex-grow: 1;
   flex-grow: 1;
-  font-family: 'Roboto', arial, sans-serif;
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: 400;
+  font-size: 15px;
   overflow: hidden;
   text-overflow: ellipsis;
   vertical-align: top;
+  padding-bottom: 1px;
 }
 
 .gsi-material-button .gsi-material-button-state {
