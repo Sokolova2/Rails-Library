@@ -1,11 +1,18 @@
 = render 'navbar/navbar'
-= form_with(model: @book, method: 'post') do |f|
-  = render 'books/books_error_message'
-  .field
-    = f.text_field :title, placeholder: 'title'
-    = f.text_field :descriptions, placeholder: 'descriptions'
-    = f.text_field :author, placeholder: 'author'
-    = f.text_field :genre, placeholder: 'genre'
-    = f.file_field :image
-  .actions
-    = f.submit 'Create Book'
+.container.mt-5
+  %h1.text-center Create book
+  = form_with(model: @book, method: 'post') do |f|
+    = render 'books/books_error_message'
+    .field.mt-5.mb-4
+      .mb-2
+        = f.text_field :title, placeholder: 'title', class: 'form-control rounded-5'
+      .mb-2
+        = f.text_field :descriptions, placeholder: 'descriptions', class: 'form-control rounded-5'
+      .mb-2
+        = f.text_field :author, placeholder: 'author', class: 'form-control rounded-5'
+      .mb-2
+        = f.text_field :genre, placeholder: 'genre', class: 'form-control rounded-5'
+      .mb-2
+        = f.file_field :image, class: 'form-control rounded-5'
+    .actions
+      = f.submit 'Create Book', class: 'btn btn-dark w-100'

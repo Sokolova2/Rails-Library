@@ -3,13 +3,18 @@
     %a.btn.btn-dark.rounded-5.w-100{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-bs-toggle" => "collapse", :href => "#collapseExample", :role => "button"}
       Edit
   #collapseExample.collapse
-    .card.card-body
+    .card.card-body.mt-3
       = form_with(model: @book, method: :put, local: true) do |f|
         .field
-          = f.text_field :title, value: @book.title
-          = f.text_field :descriptions, value: @book.descriptions
-          = f.text_field :author, value: @book.author
-          = image_tag @book.image.url
-          = f.file_field :image
+          .mb-2
+            = f.text_field :title, value: @book.title, class: 'form-control rounded-5'
+          .mb-2
+            = f.text_field :descriptions, value: @book.descriptions, class: 'form-control rounded-5'
+          .mb-2
+            = f.text_field :author, value: @book.author, class: 'form-control rounded-5'
+          .mb-2
+            = image_tag @book.image.url, class: 'rounded-4'
+          .mb-2
+            = f.file_field :image, class: 'form-control rounded-5'
         .actions
-          = f.submit 'Update book'
+          = f.submit 'Update book', class: 'btn btn-dark w-100'
