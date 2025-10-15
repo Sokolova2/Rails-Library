@@ -1,5 +1,14 @@
 = render 'navbar/navbar'
-%h1 Catalog
-.container.d-flex.gap-3.flex-wrap
-  - @books.each do |book|
+%h1.text-center Catalog
+
+.d-flex.justify-content-center.mt-3
+  = link_to 'All', books_path, class: 'btn btn-light rounded-5'
+  - @books.pluck(:genre).uniq.each do |genre|
+    = link_to genre, books_path(genre: genre), class: 'btn btn-light rounded-5'
+
+.container.d-flex.gap-3.flex-wrap.mt-4.mb-5
+  - @filter.each do |book|
     = render 'cards/cards', book: book
+
+.container.d-flex.justify-content-center.mt-5
+  =paginate @books

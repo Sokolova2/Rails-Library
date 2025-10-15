@@ -1,40 +1,43 @@
 = render 'navbar/navbar'
-.ms-4
-  = image_tag @book.image.url
-  %p= @book.title
-  %p= @book.descriptions
-  %p= @book.author
-  %p= @book.status
-  - if @book.user_id.present?
-    %p= @book.user.login
+.container.mt-5.mb-5
+  .d-flex
+    .d-block
+      = image_tag @book.image.url, class: 'book-one-image'
+      -if user_signed_in?
+        -if @book.status == 'Closed'
+          = button_to 'Return book', book_update_status_path(@book), method: :put, class: 'btn btn-dark w-100 rounded-5 mt-3'
+        -else
+          = button_to 'Get the book', book_update_status_path(@book), method: :put, class: 'btn btn-dark w-100 rounded-5 mt-3'
+      = render 'books/edit_books'
+      .border.border-light.bg-light.rounded-4.p-3.mt-3
+        %p= "Book status: #{@book.status}"
+        - if @book.user_id.present?
+          %p= "Borrowed by: #{@book.user.login}"
+    .d-block.ms-4
+      %h1.title-book= @book.title
+      .d-flex.justify-content-between.align-items-center
+        %div.d-flex.align-items-center.gap-3
+          = turbo_frame_tag 'frame2' do
+            = render 'books/likes'
+          - if @book.views.present?
+            .d-flex.gap-1.align-items-center
+              %i.bi.bi-eye.fs-4
+              %p= @book.views
+          = turbo_frame_tag 'frame5' do
+            = render 'books/favorites'
+        .d-flex.flex-column.align-items-center.justify-content-center
+          - if @book.ratings.any?
+            %p.h2.text-secondary= (@book.ratings.map(&:score).sum.to_f/ @book.ratings.count).round(2)
+          %p.mb-3= "#{@book.ratings.count} votes"
+          = render 'books/rate'
+      .border.border-light.bg-light.rounded-5.p-2{style: 'width:50%;'}
+        %p.ms-3= "Author: #{@book.author}"
+      .border.border-light.bg-light.rounded-5.p-4.mt-3
+        %p= @book.descriptions
+      .border.border-light.bg-light.rounded-4.p-3.mt-3
+        = render 'books/history'
+      .mt-3
+        = turbo_frame_tag 'frame3' do
+          = render 'books/comments'
 
-= turbo_frame_tag 'frame2' do
-  = render 'books/likes'
 
-= turbo_frame_tag 'frame3' do
-  = render 'books/comments'
-
-= turbo_frame_tag 'frame4' do
-  -if user_signed_in?
-    -if @book.status == 'Closed'
-      = button_to 'Return book', book_update_status_path(@book), method: :put, class: 'btn btn-dark'
-    -else
-      = button_to 'Get the book', book_update_status_path(@book), method: :put, class: 'btn btn-dark'
-
-- if @book.ratings.any?
-  %p= (@book.ratings.map(&:score).sum.to_f/ @book.ratings.count).round(2)
-  %p= "#{@book.ratings.count} vote"
-
-= render 'books/rate'
-
-= render 'books/edit_books'
-
-= turbo_frame_tag 'frame5' do
-  = render 'books/favorites'
-
-- if @book.views.present?
-  .d-flex.gap-1
-    %i.bi.bi-eye.fs-4
-    %p= @book.views
-
-= render 'books/history'

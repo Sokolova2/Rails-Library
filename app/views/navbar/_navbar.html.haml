@@ -1,20 +1,27 @@
 %nav.navbar.navbar-expand-lg.bg-body-secondary
   .container-fluid
-    .d-flex.align-items-center.justify-content-between
-      %a.navbar-brand.align-items-start{:href => root_path}
-        = image_tag 'library-high-resolution-logo-transparent.png', class: 'navbar-logo'
-      = button_to 'Catalogs', books_path, method: :get, class: 'navbar-btn'
-      = button_to 'Tops', tops_path, method: :get, class: 'navbar-btn'
-    .d-flex.align-items-center
+    .d-flex.align-items-center.gap-4.justify-content-between
+      %a.navbar-brand.align-items-start.ms-1{:href => root_path}
+        %i.bi.bi-book.fs-1
+      .d-flex.gap-2
+        = button_to 'Catalogs', books_path, method: :get, class: 'btn btn-light rounded-5 btn-navbar'
+        = button_to 'Tops', tops_path, method: :get, class: 'btn btn-light rounded-5 btn-navbar'
+    .d-flex.align-items-center.gap-2
       = render 'navbar/search'
       - if user_signed_in? && current_user.admin
-        = button_to new_book_path, method: :get, class: 'btn btn-outline-none background-none' do
-          %i.bi.bi-file-plus.fs-4
-      = button_to favorites_path, method: :get, class: 'btn btn-outline-none background-none' do
-        %i.bi.bi-bookmark.fs-4
+        = link_to new_book_path, class: 'text-decoration-none text-dark btn btn-light rounded-circle' do
+          %i.bi.bi-plus-circle.fs-5
+      - if user_signed_in?
+        = link_to favorites_path, class: 'text-decoration-none text-dark btn btn-light rounded-circle' do
+          %i.bi.bi-bookmark.fs-5
+      -else
+        = link_to new_user_session_path, class: 'text-decoration-none text-dark btn btn-light rounded-circle' do
+          %i.bi.bi-bookmark.fs-5
       = link_to messages_path do
         = render 'navbar/message_counter'
       -if user_signed_in?
         = render 'navbar/user_options'
       -unless user_signed_in?
-        = button_to 'Sign in/Register', new_user_session_path, method: :get, class: 'btn btn-dark'
+        = button_to 'Sign in/Register', new_user_session_path, method: :get, class: 'btn btn-dark rounded-5'
+%li
+  %hr.solid

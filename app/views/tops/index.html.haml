@@ -1,7 +1,11 @@
-= turbo_frame_tag 'frame1' do
-  = render 'navbar/navbar'
-  %h1 Tops
+= render 'navbar/navbar'
+%h1.text-center Tops
 
-  .container.d-flex.gap-3.flex-wrap
-    -@top_book.each do |book|
-      = render 'cards/cards', book: book
+.d-flex.justify-content-center.mt-3
+  = link_to 'All', tops_path, class: 'btn btn-light rounded-5'
+  - @top_book.pluck(:genre).uniq.each do |genre|
+    = link_to genre, tops_path(genre: genre), class: 'btn btn-light rounded-5'
+
+.container.d-flex.gap-3.flex-wrap.mt-4.mb-5
+  -@filter.each do |book|
+    = render 'cards/cards', book: book

@@ -1,6 +1,9 @@
 = render 'navbar/navbar'
-%h1 Favorites
+%h1.text-center Favorites
 
-.container.d-flex.gap-3.flex-wrap
-  - @favorite_books.each do |book|
-    = render 'cards/cards', book: book
+- if current_user.favorites.present?
+  .container.d-flex.gap-3.flex-wrap.mt-5.mb-5
+    - @favorite_books.each do |book|
+      = render 'cards/cards', book: book
+-else
+  %p.text-center.h1 You don`t have anything yet

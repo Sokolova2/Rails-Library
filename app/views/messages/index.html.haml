@@ -1,8 +1,16 @@
 = render 'navbar/navbar'
 
-= button_to message_path(@messages), method: :delete do
-  %i.bi.bi-trash
+%h1.text-center Messages
 
-- @messages.each do |message|
-  %p System
-  %p= message.content
+.container
+  .d-flex.justify-content-end.mb-4
+    = button_to message_path(@messages), method: :delete, class: 'border-0 bg-body-secondary' do
+      %i.bi.bi-trash.fs-4
+
+  -if @messages.present?
+    .border.border-light.bg-light.rounded-4.p-3
+    - @messages.each do |message|
+      %p System
+      %p= message.content
+  -else
+    %p.fs-6.text-center.text-secondary You don`t have messages yet
