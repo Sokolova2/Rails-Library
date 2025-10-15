@@ -4,6 +4,7 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all
+    filter_by_genre
   end
 
   def show
@@ -52,59 +53,12 @@ class BooksController < ApplicationController
   def set_book
     @book = Book.find(params[:id])
   end
-end
-class BooksController < ApplicationController
-  before_action :set_book, only: %i[show update destroy]
-  before_action :authenticate_user!, only: %i[create update destroy]
 
-  def index
-    @books = Book.all
-  end
-
-  def show
-    BookViewsService.new(current_user, @book, session).track
-  end
-
-  def new
-    @book = Book.new
-  end
-
-  def create
-    @book = Book.new(book_params)
-
-    if @book.save
-      flash[:notice] = 'Book was successfully created.'
-      redirect_to book_path(@book)
+  def filter_by_genre
+    if params[:genre].present?
+      @filter = @books.where(genre: params[:genre])
     else
-      flash[:alert] = @book.errors.full_messages.to_sentence
-      redirect_to new_book_path
+      @filter = @books
     end
-  end
-
-  def update
-    if @book.update(book_params)
-      redirect_to book_path(@book)
-    else
-      redirect_to book_path(@book), alert: @book.errors.full_messages
-    end
-  end
-
-  def destroy
-    @book.destroy
-
-    respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.remove("#{helpers.dom_id(@book)}") }
-      format.html { redirect_to root_path, status: :see_other }
-    end
-  end
-
-  private
-
-  def book_params
-    params.require(:book).permit(:title, :descriptions, :author, :image, :status, :borrowed_by)
-  end
-
-  def set_book
-    @book = Book.find(params[:id])
   end
 end
