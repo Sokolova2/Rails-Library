@@ -16,7 +16,7 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.find_or_initialize_by(book_params)
+    @book = Book.new(book_params)
 
     if @book.save
       flash[:notice] = 'Book was successfully created.'
@@ -47,7 +47,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :descriptions, :author, :image, :status, :borrowed_by)
+    params.require(:book).permit(:title, :descriptions, :author, :image, :status, :borrowed_by, :genre)
   end
 
   def set_book
