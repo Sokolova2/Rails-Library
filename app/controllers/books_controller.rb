@@ -3,7 +3,7 @@ class BooksController < ApplicationController
   before_action :authenticate_user!, only: %i[create update destroy]
 
   def index
-    @books = Book.all
+    @books = Book.page(params[:page]).per(20)
     filter_by_genre
   end
 
@@ -16,7 +16,7 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.new(book_params)
+    @book = Book.find_or_initialize_by(book_params)
 
     if @book.save
       flash[:notice] = 'Book was successfully created.'

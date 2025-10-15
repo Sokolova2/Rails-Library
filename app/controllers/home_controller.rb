@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @books = Book.search(params[:search])
+    @books = Book.search(params[:search]).page(params[:page]).per(20)
     @top_book = Book.all.sort_by{ |book| -book.likes.count }
 
     if user_signed_in?
