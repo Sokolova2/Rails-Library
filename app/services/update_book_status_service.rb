@@ -19,7 +19,7 @@ class UpdateBookStatusService
       end
     else
       @book.update(status: 'Open', user_id: nil)
-      history = History.find_by(user_id: @user.id, book_id: @book.id)
+      history = History.where(book_id: @book.id).last
       history.update(status: 'return')
       user.each do |u|
         Message.create(user_id: u.id, content: "Book \"#{@book.title}\" status updated. The book from your favorite is now open for use again")
