@@ -1,11 +1,11 @@
+= render 'navbar/navbar'
+
 %h2.h2.text-center.mt-3
   Edit Profile
-= link_to root_path, class: "h5 fs-2 ms-2" do
-  %i.bi.bi-arrow-left
-.container
+.container.mt-5
   .d-flex.flex-column.flex-md-row.justify-content-between.gap-5
     .d-block.w-100
-      .shadow.rounded-4.ps-3.pb-3.pe-5
+      .shadow.rounded-4.ps-3.pb-3.pe-5.bg-light
         .text-center
           = link_to choose_avatar_path do
             = image_tag current_user.avatar.url, class: 'rounded-circle edit-avatar mt-3'
@@ -63,5 +63,5 @@
             = f.select :gender, options_for_select([[''], ['male'], ['female']]), {},  { class: 'form-select' }
         .mb-3
           .actions
-            = f.submit "Update", class: 'btn btn-secondary'
+            = f.submit "Update", class: 'btn btn-secondary mb-5 w-100'
 

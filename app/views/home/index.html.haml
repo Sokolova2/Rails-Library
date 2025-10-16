@@ -1,7 +1,7 @@
 = render 'navbar/navbar'
 = render 'home/tops'
 
-.container.d-flex.gap-3.flex-wrap.mb-5.ms-2
+.container.d-flex.align-items-center.gap-2.flex-wrap.mt-4.mb-5
   - @books.each do |book|
     = render 'cards/cards', book: book, data: { turbo_frame: 'frame2' }
 
