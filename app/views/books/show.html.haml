@@ -1,8 +1,9 @@
 = render 'navbar/navbar'
 .container.mt-5.mb-5
-  .d-flex
-    .d-block
-      = image_tag @book.image.url, class: 'book-one-image'
+  .d-flex.flex-column.flex-md-row.gap-4.w-100
+    .d-block.w-100
+      .text-center
+        = image_tag @book.image.url, class: 'book-one-image'
       -if user_signed_in?
         -if @book.status == 'Closed'
           = button_to 'Return book', book_update_status_path(@book), method: :put, class: 'btn btn-dark w-100 rounded-5 mt-3'
@@ -13,7 +14,7 @@
         %p= "Book status: #{@book.status}"
         - if @book.user_id.present?
           %p= "Borrowed by: #{@book.user.login}"
-    .d-block.ms-4
+    .d-block
       %h1.title-book= @book.title
       .d-flex.justify-content-between.align-items-center
         %div.d-flex.align-items-center.gap-3

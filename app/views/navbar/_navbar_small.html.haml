@@ -1,0 +1,32 @@
+.container.mt-3.mb-3
+  = render 'navbar/search'
+
+%nav.navbar-small-bottom.bg-body-secondary.pt-1.pb-1
+  .d-flex.gap-3.justify-content-center.align-items-center.bg-body-secondary.m-1.z-2.w-100
+    = link_to books_path, class: 'text-decoration-none text-dark rounded-circle' do
+      .d-flex.flex-column.align-items-center
+        %i.bi.bi-ui-checks-grid.fs-6
+        %p Catalog
+    - if user_signed_in?
+      = link_to favorites_path, class: 'text-decoration-none text-dark' do
+        .d-flex.flex-column.align-items-center
+          %i.bi.bi-bookmark.fs-6
+          %p Favorites
+    -else
+      = link_to new_user_session_path, class: 'text-decoration-none text-dark rounded-circle' do
+        .d-flex.flex-column.align-items-center
+          %i.bi.bi-bookmark.fs-6
+          %p Favorites
+    %a.navbar-brand.align-items-start.ms-2.me-4{:href => root_path}
+      %i.bi.bi-book.fs-1
+    - if user_signed_in?
+      = link_to messages_path, class: 'text-decoration-none text-dark' do
+        .d-flex.flex-column.align-items-center
+          = render 'navbar/message_counter'
+          %p Messages
+    - else
+      = link_to new_user_session_path, class: 'text-decoration-none text-dark' do
+        .d-flex.flex-column.align-items-center
+          %i.bi.bi-bell.fs-6
+          %p Messages
+    = render 'navbar/burger_menu'

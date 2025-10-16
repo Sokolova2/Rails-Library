@@ -1,0 +1,28 @@
+%nav.navbar.navbar-expand-lg.bg-body-secondary
+  .container-fluid
+    .d-flex.align-items-center.gap.justify-content-between
+      %a.navbar-brand.align-items-start.ms-1{:href => root_path}
+        %i.bi.bi-book.fs-1
+      .d-flex.gap-2
+        = button_to 'Catalog', books_path, method: :get, class: 'btn btn-light rounded-5 btn-navbar'
+        = button_to 'Top', tops_path, method: :get, class: 'btn btn-light rounded-5 btn-navbar'
+    .d-flex.align-items-center.gap-2
+      = render 'navbar/search'
+      - if user_signed_in? && current_user.admin
+        = link_to new_book_path, class: 'text-decoration-none text-dark btn btn-light rounded-circle' do
+          %i.bi.bi-plus-circle.fs-icon
+      - if user_signed_in?
+        = link_to favorites_path, class: 'text-decoration-none text-dark btn btn-light rounded-circle' do
+          %i.bi.bi-bookmark.fs-icon
+      -else
+        = link_to new_user_session_path, class: 'text-decoration-none text-dark btn btn-light rounded-circle' do
+          %i.bi.bi-bookmark.fs-icon
+      = link_to messages_path do
+        .btn.btn-light.rounded-circle
+          = render 'navbar/message_counter'
+      -if user_signed_in?
+        = render 'navbar/user_options'
+      -unless user_signed_in?
+        = button_to 'Sign in/Register', new_user_session_path, method: :get, class: 'btn btn-dark rounded-5'
+%li
+  %hr.solid
