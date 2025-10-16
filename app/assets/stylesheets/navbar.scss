@@ -15,3 +15,42 @@ hr.solid{
   width: 100px;
   height: 40px;
 }
+
+.gap{
+  gap: 1.5rem;
+}
+
+.navbar-small-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 0;
+  width: 100%;
+  z-index: 1050;
+  overflow: visible !important;
+}
+
+.fs-icon{
+  font-size: 1.25rem;
+}
+
+@media only screen and (min-width: 576px) and (max-width: 746px){
+  .search{
+    width: 140px;
+    height: 40px;
+    font-size: 12px;
+  }
+
+  .gap{
+    gap: 0;
+  }
+
+  .btn-navbar{
+    font-size: 11px;
+    width: 70px;
+  }
+
+  .fs-icon{
+    font-size: 1rem;
+  }
+}
