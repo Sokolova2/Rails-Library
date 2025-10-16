@@ -8,9 +8,9 @@
       %i.bi.bi-trash.fs-4
 
   -if @messages.present?
-    .border.border-light.bg-light.rounded-4.p-3
     - @messages.each do |message|
-      %p System
-      %p= message.content
+      .border.border-light.bg-light.rounded-4.p-3.mb-2
+        %p System
+        %p= message.content
   -else
     %p.fs-6.text-center.text-secondary You don`t have messages yet
