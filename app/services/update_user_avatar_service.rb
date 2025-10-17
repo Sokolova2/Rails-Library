@@ -12,13 +12,7 @@ class UpdateUserAvatarService
     @params = params
   end
 
-  def set_avatar_user
-    set_random_avatar
-  end
-
-  private
-
-  def set_random_avatar
+  def set_user_avatar
     if avatar_param_present?
       handle_avatar
     elsif user_avatar_param_present?
@@ -26,6 +20,8 @@ class UpdateUserAvatarService
       redirect_to edit_user_registration_path
     end
   end
+
+  private
 
   def avatar_param_present?
     @params[:avatar].present?
@@ -37,8 +33,8 @@ class UpdateUserAvatarService
 
   def handle_avatar
     gender = @params[:avatar].split('/').first
-
     filename = File.basename(@params[:avatar])
+
     file_path = Rails.root.join("app/assets/images/#{gender}/#{filename}")
 
     @user.update(avatar: File.open(file_path))

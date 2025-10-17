@@ -1,7 +1,7 @@
 = render 'navbar/navbar'
 .container.mt-5
   %h1.text-center Create book
-  = form_with(model: @book_new, method: 'post') do |f|
+  = form_with(model: @new_book, method: 'post') do |f|
     = render 'books/books_error_message'
     .field.mt-5.mb-4
       .mb-2

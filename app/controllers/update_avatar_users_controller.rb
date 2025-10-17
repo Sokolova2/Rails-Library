@@ -9,7 +9,7 @@ class UpdateAvatarUsersController < ApplicationController
   def update_avatar_users
     @user = current_user
 
-    if UpdateUserAvatarService.new(@user, params).set_avatar_user
+    if UpdateUserAvatarService.new(@user, params).set_user_avatar
       redirect_to edit_user_registration_path
     else
       redirect_to choose_avatar_path
