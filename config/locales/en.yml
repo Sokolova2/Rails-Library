@@ -29,6 +29,7 @@
 
 en:
   hello: "Hello world"
+  book-created: 'Book was successfully created.'
   views:
     pagination:
       first: ""

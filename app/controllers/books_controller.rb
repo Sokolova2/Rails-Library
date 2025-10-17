@@ -19,7 +19,7 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
 
     if @book.save
-      flash[:notice] = 'Book was successfully created.'
+      flash[:notice] = t('book-created')
       redirect_to book_path(@book)
     else
       flash[:alert] = @book.errors.full_messages.to_sentence
@@ -39,7 +39,7 @@ class BooksController < ApplicationController
     @book.destroy
 
     respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.remove("#{helpers.dom_id(@book)}") }
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(helpers.dom_id(@book)) }
       format.html { redirect_to root_path, status: :see_other }
     end
   end
