@@ -3,6 +3,16 @@
 class UpdateAvatarUsersController < ApplicationController
   def choose_avatar
     @user = current_user
-    UpdateUserAvatarService.new(user: @user).set_avatar_user
+    @avatars = UpdateUserAvatarService::AVATARS
+  end
+
+  def update_avatar_users
+    @user = current_user
+
+    if UpdateUserAvatarService.new(@user, params).set_avatar_user
+      redirect_to edit_user_registration_path
+    else
+      redirect_to choose_avatar_path
+    end
   end
 end
