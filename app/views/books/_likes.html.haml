@@ -1,13 +1,13 @@
 .d-flex.align-items-center
   - if user_signed_in?
     - if @book.likes.exists?(user_id: current_user.id)
-      = button_to book_like_path(@book), method: :delete, class: 'btn btn-outline-none' do
+      = button_to book_like_path(@book), method: :delete, class: 'border-0' do
         %i.bi.bi-heart-fill
     - else
-      = button_to book_likes_path(@book), method: :post, class: 'btn btn-outline-none' do
+      = button_to book_likes_path(@book), method: :post, class: 'border-0' do
         %i.bi.bi-heart
-    %p= "Likes: #{@book.likes.count}"
+    %p= "Likes:#{@book.likes.count}"
   -else
-    = button_to new_user_session_path, method: :get, class: 'btn btn-outline-dark' do
-      %i.bi.bi-heart
-    %p.fs-4= "Likes: #{@book.likes.count}"
+    = button_to new_user_session_path, method: :get, class: 'border-0' do
+      %i.bi.bi-heart.fs-5
+    %p= "Likes:#{@book.likes.count}"

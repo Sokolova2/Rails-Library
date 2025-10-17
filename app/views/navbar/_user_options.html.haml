@@ -1,21 +1,54 @@
 .dropdown.border-secondary
   %button{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :type => "button", style: 'border: none'}
     = image_tag current_user.avatar.url, class: "rounded-circle avatar"
-  %ul.dropdown-menu.dropdown-menu-end{ style: 'width: 300px' }
-    .d-flex.ms-4
-      .d-block
-        %li.mt-2.mb-2
+  %ul.dropdown-menu.dropdown-menu-end.justify-content-end.flex-grow-1.pe-3{ style: 'width: 300px' }
+    .d-block.ms-4
+      .mt-3.mb-2
+        .d-flex.align-items-center.gap-2.mb-2.ms-0
+          = image_tag current_user.avatar.url, class: "rounded-circle avatar"
+          %p= current_user.login
+      %li.mt-2
+        %hr.solid
+      .mb-3.mt-3
+        = link_to books_path, class: 'text-decoration-none text-dark rounded-circle' do
           .d-flex.align-items-center.gap-3
-            = image_tag current_user.avatar.url, class: "rounded-circle avatar"
-            %p= current_user.login
-        %li.mt-2
-          %hr.solid
-        %li.mt-2.mb-2
-          = button_to 'Edit profile', edit_user_registration_path, method: :get, class: 'li-dropdown text-dark'
-        %li
-          %hr.solid
-        %li.mb-1.mt-2
-          .d-flex.justify-content-between
-            = button_to 'Sign out', destroy_user_session_path, method: :delete, data: { turbo: false }, class: 'li-dropdown text-dark'
-
-
+            %i.bi.bi-ui-checks-grid.fs-5
+            %p.fs-6 Catalog
+      .mb-3
+        - if user_signed_in?
+          = link_to favorites_path, class: 'text-decoration-none text-dark rounded-circle' do
+            .d-flex.align-items-center.gap-3
+              %i.bi.bi-bookmark.fs-5
+              %p Favorites
+        -else
+          = link_to new_user_session_path, class: 'text-decoration-none text-dark rounded-circle' do
+            .d-flex.align-items-center.gap-3
+              %i.bi.bi-bookmark.fs-5
+              %p Favorites
+      .mb-3
+        - if user_signed_in?
+          = link_to messages_path, class: 'text-decoration-none text-dark' do
+            .d-flex.align-items-center.gap-3
+              %i.bi.bi-bell.fs-5
+              %p Messages
+        - else
+          = link_to new_user_session_path, class: 'text-decoration-none text-dark' do
+            .d-flex.align-items-center.gap-3
+              %i.bi.bi-bell.fs-5
+              %p Messages
+      .mb-3
+        = link_to tops_path, class: 'text-decoration-none text-dark' do
+          .d-flex.align-items-center.gap-2
+            %i.bi.bi-arrow-up-short.fs-3
+            %p.fs-6 Top
+      %li
+        %hr.solid
+      .mt-3
+        = button_to 'Edit profile', edit_user_registration_path, method: :get, class: 'li-dropdown text-dark'
+      .mt-3
+        - if user_signed_in? && current_user.admin
+          = button_to 'Create book', new_book_path, method: :get, class: 'li-dropdown text-dark mt-2 mb-3'
+      %li
+        %hr.solid
+      .d-flex.justify-content-between.mt-2.mb-2
+        = button_to 'Sign out', destroy_user_session_path, method: :delete, data: { turbo: false }, class: 'li-dropdown text-dark'

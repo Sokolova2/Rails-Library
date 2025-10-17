@@ -17,9 +17,14 @@
       -else
         = link_to new_user_session_path, class: 'text-decoration-none text-dark btn btn-light rounded-circle' do
           %i.bi.bi-bookmark.fs-icon
-      = link_to messages_path do
-        .btn.btn-light.rounded-circle
-          = render 'navbar/message_counter'
+      -if user_signed_in?
+        = link_to messages_path do
+          .btn.btn-light.rounded-circle
+            = render 'navbar/message_counter'
+      - else
+        = link_to new_user_session_path, class: 'text-decoration-none text-dark' do
+          .btn.btn-light.rounded-circle
+            %i.bi.bi-bell.fs-5
       -if user_signed_in?
         = render 'navbar/user_options'
       -unless user_signed_in?
