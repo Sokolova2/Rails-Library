@@ -18,7 +18,7 @@
         = link_to new_user_session_path, class: 'text-decoration-none text-dark btn btn-light rounded-circle' do
           %i.bi.bi-bookmark.fs-icon
       -if user_signed_in?
-        = link_to messages_path do
+        = link_to messages_path, class: 'text-decoration-none' do
           = render 'navbar/message_counter'
       - else
         = link_to new_user_session_path, class: 'text-decoration-none text-dark' do

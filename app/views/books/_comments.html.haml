@@ -1,15 +1,16 @@
 - if user_signed_in?
-  = form_with(url: book_comments_path(@book), location: true, method: :post) do |f|
-    .d-flex.mb-4
-      = f.text_field :content, placeholder: 'Leave comments', class: 'form-control rounded-5'
-      = button_tag class: 'border-0 bg-body-secondary' do
-        %i.bi.bi-arrow-up-circle-fill.fs-3
-  - @book.comments.each do |comment|
-    .d-flex.gap-1.mb-3
-      = image_tag comment.user.avatar.url, class: 'avatar'
-      .d-block
-        %p= comment.user.login
-        %p.mt-2= comment.content
+  = turbo_frame_tag 'frame3' do
+    = form_with(url: book_comments_path(@book), location: true, method: :post) do |f|
+      .d-flex.mb-4
+        = f.text_field :content, placeholder: 'Leave comments', class: 'form-control rounded-5'
+        = button_tag class: 'border-0 bg-body-secondary' do
+          %i.bi.bi-arrow-up-circle-fill.fs-3
+    - @book.comments.each do |comment|
+      .d-flex.gap-1.mb-3
+        = image_tag comment.user.avatar.url, class: 'avatar'
+        .d-block
+          %p= comment.user.login
+          %p.mt-2= comment.content
 - else
   .d-flex.align-items-center.gap-2.mb-4
     %input.form-control.rounded-5.border-0.form-control.p-2{ type: "text", placeholder: "Leave comments", name: "content" }

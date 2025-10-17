@@ -18,14 +18,21 @@
       %h1.title-book= @book.title
       .d-flex.justify-content-between.align-items-center
         %div.d-flex.align-items-center.gap-3
-          = turbo_frame_tag 'frame2' do
-            = render 'books/likes'
+          - if user_signed_in?
+            = turbo_frame_tag 'frame2' do
+              = render 'books/likes'
+          -else
+            .d-flex.gap-0.align-items-center
+              = button_to new_user_session_path, method: :get, class: 'border-0' do
+                %i.bi.bi-heart.fs-5
+              %p= "Likes:#{@book.likes.count}"
           - if @book.views.present?
             .d-flex.gap-1.align-items-center
               %i.bi.bi-eye.fs-4
               %p= @book.views
-          = turbo_frame_tag 'frame5' do
-            = render 'books/favorites'
+          = turbo_frame_tag 'frame3' do
+            - if user_signed_in?
+              = render 'books/favorites'
         .d-flex.flex-column.align-items-center.justify-content-center
           - if @book.ratings.any?
             %p.h2.text-secondary= (@book.ratings.map(&:score).sum.to_f/ @book.ratings.count).round(2)
@@ -41,7 +48,6 @@
       .border.border-light.bg-light.rounded-4.p-3.mt-3
         = render 'books/history'
       .mt-3
-        = turbo_frame_tag 'frame3' do
-          = render 'books/comments'
+        = render 'books/comments'
 
 

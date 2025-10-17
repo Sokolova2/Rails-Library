@@ -5,7 +5,7 @@
   .col
     #multiCollapseExample1.collapse.multi-collapse.mt-3
       .card.card-body.shadow-sm.rounded-4
-        %h5.text-center.mb-3.text-muted Історія видачі книги
+        %h5.text-center.mb-3.text-muted History
         - if @book.histories.present?
           - @book.histories.order_by(created_at: :desc).limit(5).each do |history|
             .border-start.border-2.border-secondary.ps-3.mb-3.position-relative
@@ -22,4 +22,4 @@
                     = "Return: #{history.user.login}"
                 %small.text-muted= history.updated_at.strftime('%Y-%m-%d %H:%M')
         - else
-          %p.text-muted.text-center.mb-0 Історія поки порожня
+          %p.text-muted.text-center.mb-0 History is empty

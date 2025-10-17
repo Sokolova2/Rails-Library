@@ -13,8 +13,8 @@
           .mb-2
             = f.text_field :author, value: @book.author, class: 'form-control rounded-5'
           .mb-2
-            = image_tag @book.image.url, class: 'rounded-4'
+            = image_tag @book.image.url, class: 'rounded-4 w-75'
           .mb-2
             = f.file_field :image, class: 'form-control rounded-5'
         .actions
-          = f.submit 'Update book', class: 'btn btn-dark w-100'
+          = f.submit 'Update book', class: 'btn btn-dark form-control rounded-5'

@@ -1,13 +1,8 @@
 .d-flex.align-items-center
-  - if user_signed_in?
-    - if @book.favorites.exists?(user_id: current_user.id)
-      = button_to favorites_path(book_id: @book.id), method: :delete, class: 'border-0' do
-        %i.bi.bi-bookmark-dash.fs-5
-    - else
-      = button_to favorites_path(book_id: @book.id), method: :post, class: 'border-0' do
-        %i.bi.bi-bookmark-plus.fs-5
-    %p= "Favorites:#{@book.favorites.count}"
+  - if @book.favorites.exists?(user_id: current_user.id)
+    = button_to favorites_path(book_id: @book.id), method: :delete, class: 'border-0' do
+      %i.bi.bi-bookmark-dash.fs-5
   - else
-    = button_to new_user_session_path, method: :delete, class: 'border-0' do
+    = button_to favorites_path(book_id: @book.id), method: :post, class: 'border-0' do
       %i.bi.bi-bookmark-plus.fs-5
-    %p= "Favorites:#{@book.favorites.count}"
+  %p= "Favorites:#{@book.favorites.count}"
