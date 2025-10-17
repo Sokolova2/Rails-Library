@@ -18,7 +18,7 @@
             = f.password_field :password_confirmation, autocomplete: 'new-password', placeholder: 'password-confirmation', class: 'form-control rounded-5'
         .mb-3
           .field
-            = f.select :gender, options_for_select([[''], ['male'], ['female']]), {},  { class: 'form-select rounded-5' }
+            = f.select :gender, options_for_select([['gender'], ['male'], ['female']]), {},  { class: 'form-select rounded-5' }
         .mb-3
           .field
             = f.file_field :avatar, autocomplete: 'avatar', class: 'form-control rounded-5'

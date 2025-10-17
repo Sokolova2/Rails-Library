@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class UpdateUserAvatarService
-  AVATARS =  {
+  AVATARS = {
     male: Rails.root.glob('app/assets/images/male/*.png'),
     female: Rails.root.glob('app/assets/images/female/*.png'),
     animal: Rails.root.glob('app/assets/images/animal/*.png')
-  }
+  }.freeze
 
   def initialize(user, params)
     @user = user
