@@ -12,16 +12,14 @@ Rails.application.routes.draw do
   resources :books do
     resources :likes
     resources :comments
-    put 'update_status', to: 'update_book_status#update'
     resource :ratings
+
+    put 'update_status', to: 'update_book_status#update'
   end
 
   resources :history
-
   resources :tops, only: %i[index]
-
   resource :favorites
-
   resources :messages, only: %i[index destroy]
 
   get 'update_avatar_users', to: 'update_avatar_users#choose_avatar', as: :choose_avatar
