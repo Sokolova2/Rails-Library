@@ -21,9 +21,9 @@ class Book
   has_many :favorites, dependent: :destroy
   has_many :impressions, dependent: :destroy
 
-  validates :title, presence: true
+  validates :title, presence: true, length: { maximum: 40 }
   validates :descriptions, presence: true
-  validates :author, presence: true
+  validates :author, presence: true, length: { maximum: 40 }
   validates :image, presence: true
 
   class << self
