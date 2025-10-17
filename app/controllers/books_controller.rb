@@ -3,28 +3,26 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[show update destroy]
   before_action :authenticate_user!, only: %i[create update destroy]
+  before_action :filter_by_genre, only: %i[index]
 
-  def index
-    @books = Book.page(params[:page]).per(20)
-    filter_by_genre # TODO: this is before action
-  end
+  def index; end
 
   def show
     BookViewsService.new(current_user, @book, session).track
   end
 
   def new
-    @book_new = Book.new
+    @new_book = Book.new
   end
 
   def create
-    @book_new = Book.new(book_params)
+    @new_book = Book.new(book_params)
 
-    if @book_new.save
+    if @new_book.save
       flash[:notice] = t('book-created')
-      redirect_to book_path(@book_new)
+      redirect_to book_path(@new_book)
     else
-      flash[:alert] = @book_new.errors.full_messages.to_sentence
+      flash[:alert] = @new_book.errors.full_messages.to_sentence
       redirect_to new_book_path
     end
   end
@@ -57,6 +55,8 @@ class BooksController < ApplicationController
   end
 
   def filter_by_genre
+    @books = Book.page(params[:page]).per(20)
+
     @filter = if params[:genre].present?
                 @books.where(genre: params[:genre])
               else

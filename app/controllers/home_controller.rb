@@ -2,6 +2,7 @@
 
 class HomeController < ApplicationController
   before_action :set_books
+
   def index
     @top_book = Book.all.sort_by { |book| [-book.likes.count, -book.views] }
     return unless user_signed_in?
