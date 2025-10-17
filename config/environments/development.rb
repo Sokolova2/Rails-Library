@@ -3,7 +3,6 @@
 require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
-  ENV['GOOGLE_OAUTH_CLIENT_ID'] = ENV['GOOGLE_OAUTH_CLIENT_ID']
   config.enable_reloading = true
 
   config.eager_load = false

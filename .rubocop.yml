@@ -13,3 +13,7 @@ Metrics/BlockLength:
 Rails/StrongParametersExpect:
   Exclude:
     - 'app/controllers/**'
+
+Style/FetchEnvVar:
+  Exclude:
+    - 'config/environments/**'
