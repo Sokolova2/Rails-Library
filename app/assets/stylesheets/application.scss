@@ -9,13 +9,14 @@
 @use 'text';
 @use 'ratings';
 @use 'scroll';
-@use 'history';
-@use 'carousel';
-@use "books";
 
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet');
 
 .body {
   font-family: "Exo 2", sans-serif;
   background-color: rgba(233, 236, 239, 1);
+}
+
+.wrapper-top{
+  max-width: 1900px;
 }
