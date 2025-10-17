@@ -7,4 +7,6 @@ class Comment
   field :content, type: String
   belongs_to :user
   belongs_to :book
+
+  validates :content, length: { minimum: 1 }
 end
