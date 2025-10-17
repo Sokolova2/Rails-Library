@@ -29,7 +29,7 @@ class User
 
   field :login
 
-  field :email,              type: String, default: ''
+  field :email, type: String, default: ''
   field :encrypted_password, type: String, default: ''
   field :uid
   field :provider

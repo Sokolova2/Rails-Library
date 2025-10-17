@@ -2,6 +2,7 @@
 
 class MessagesController < ApplicationController
   before_action :set_message, only: %i[index destroy]
+
   def index
     @messages = current_user.messages.order(created_at: :desc)
 

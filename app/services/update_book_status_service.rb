@@ -7,9 +7,11 @@ class UpdateBookStatusService
   end
 
   def update_book_status
-    book = Favorite.where(book_id: @book.id)
+    # TODO: change name
+    # TODO Move user favorite logic to separate method
+    book_favorites = Favorite.where(book_id: @book.id)
 
-    users = book.pluck(:user_id)
+    users = book_favorites.pluck(:user_id)
 
     @users_favorite = User.in(id: users)
 
@@ -22,6 +24,7 @@ class UpdateBookStatusService
 
   def book_open
     @book.update(status: 'Closed', user_id: @user.id)
+    # TODO: move history to another method
     History.create(user_id: @user.id, book_id: @book.id, status: 'took')
     @users_favorite.each do |u|
       Message.create(

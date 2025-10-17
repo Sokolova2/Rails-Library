@@ -6,7 +6,7 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.page(params[:page]).per(20)
-    filter_by_genre
+    filter_by_genre # TODO: this is before action
   end
 
   def show
@@ -20,11 +20,11 @@ class BooksController < ApplicationController
   def create
     @book_new = Book.new(book_params)
 
-    if @book.save
+    if @book_new.save
       flash[:notice] = t('book-created')
-      redirect_to book_path(@book)
+      redirect_to book_path(@book_new)
     else
-      flash[:alert] = @book.errors.full_messages.to_sentence
+      flash[:alert] = @book_new.errors.full_messages.to_sentence
       redirect_to new_book_path
     end
   end

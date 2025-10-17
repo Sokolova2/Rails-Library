@@ -2,7 +2,8 @@
 
 class TopsController < ApplicationController
   def index
-    @top_book = Book.all
+
+    @top_books = Book.all
     filter_by_genre
     @filter = @filter.sort_by { |book| [-book.likes.count, -book.views] }
   end
@@ -11,9 +12,9 @@ class TopsController < ApplicationController
 
   def filter_by_genre
     @filter = if params[:genre].present?
-                @books.where(genre: params[:genre])
+                @top_books.where(genre: params[:genre])
               else
-                @books
+                @top_books
               end
   end
 end

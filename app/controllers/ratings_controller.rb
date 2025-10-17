@@ -3,6 +3,7 @@
 class RatingsController < ApplicationController
   before_action :set_book
   before_action :authenticate_user!
+
   def create
     @rating = @book.ratings.find_or_initialize_by(user_id: current_user.id)
     @rating.score = params[:score]

@@ -6,6 +6,7 @@ class UpdateUserAvatarService
   end
 
   def set_avatar_user
+    # TODO:  move to constants
     @avatars = {
       male: Rails.root.glob('app/assets/images/male/*.png'),
       female: Rails.root.glob('app/assets/images/female/*.png'),

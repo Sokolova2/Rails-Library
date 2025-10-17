@@ -26,7 +26,9 @@ class Book
   validates :author, presence: true
   validates :image, presence: true
 
-  def self.search(search)
-    SearchService.new(self).search(search)
+  class << self
+    def search(search)
+      SearchService.new(self).search(search)
+    end
   end
 end
