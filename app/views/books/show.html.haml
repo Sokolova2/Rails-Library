@@ -29,6 +29,8 @@
         .d-flex.flex-column.align-items-center.justify-content-center
           - if @book.ratings.any?
             %p.h2.text-secondary= (@book.ratings.map(&:score).sum.to_f/ @book.ratings.count).round(2)
+          -else
+            %p.h2.text-secondary= 0
           %p.mb-3= "#{@book.ratings.count} votes"
           = render 'books/rate'
       .border.border-light.bg-light.rounded-4.p-2{style: 'width:50%;'}

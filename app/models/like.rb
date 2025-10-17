@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Like
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -5,5 +7,5 @@ class Like
   belongs_to :user
   belongs_to :book
 
-  validates_uniqueness_of :user_id, :scope => :book_id
+  validates :user_id, uniqueness: { scope: :book_id }
 end

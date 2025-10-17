@@ -9,3 +9,7 @@ Style/Documentation:
 Metrics/BlockLength:
   Exclude:
     - 'config/environments/**'
+
+Rails/StrongParametersExpect:
+  Exclude:
+    - 'app/controllers/**'

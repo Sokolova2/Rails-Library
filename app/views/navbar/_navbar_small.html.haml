@@ -22,7 +22,7 @@
     - if user_signed_in?
       = link_to messages_path, class: 'text-decoration-none text-dark' do
         .d-flex.flex-column.align-items-center
-          = render 'navbar/message_counter'
+          = render 'navbar/message_counter_small'
           %p Messages
     - else
       = link_to new_user_session_path, class: 'text-decoration-none text-dark' do

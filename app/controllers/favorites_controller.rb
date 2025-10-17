@@ -1,9 +1,9 @@
+# frozen_string_literal: true
+
 class FavoritesController < ApplicationController
   before_action :set_book, only: %i[create destroy]
 
-  def index
-
-  end
+  def index; end
 
   def show
     favorite = Favorite.where(user: current_user.id).pluck(:book_id)
@@ -11,20 +11,20 @@ class FavoritesController < ApplicationController
   end
 
   def create
-    unless Favorite.exists?(user_id: current_user.id, book_id: @book.id)
-      @favorite = Favorite.create(user_id: current_user.id, book_id: @book.id)
+    return if Favorite.exists?(user_id: current_user.id, book_id: @book.id)
 
-      redirect_back(fallback_location: root_path)
-    end
+    @favorite = Favorite.create(user_id: current_user.id, book_id: @book.id)
+
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
-    if Favorite.exists?(user_id: current_user.id, book_id: @book.id)
-      @favorite = Favorite.find_by(user_id: current_user.id, book_id: @book.id)
-      @favorite.destroy
+    return unless Favorite.exists?(user_id: current_user.id, book_id: @book.id)
 
-      redirect_back(fallback_location: root_path)
-    end
+    @favorite = Favorite.find_by(user_id: current_user.id, book_id: @book.id)
+    @favorite.destroy
+
+    redirect_back(fallback_location: root_path)
   end
 
   private

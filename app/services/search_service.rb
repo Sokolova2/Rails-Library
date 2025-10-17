@@ -7,7 +7,7 @@ class SearchService
 
   def search(search)
     if search.present?
-    @model.where(title: /#{Regexp.escape(search)}/i)
+      @model.where(title: /#{Regexp.escape(search)}/i)
     else
       @model.all
     end

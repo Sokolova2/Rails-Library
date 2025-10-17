@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UpdateBookStatusController < ApplicationController
   before_action :set_book
 

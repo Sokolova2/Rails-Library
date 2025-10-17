@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Book
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -7,7 +9,7 @@ class Book
   field :title, type: String
   field :descriptions, type: String
   field :author, type: String
-  field :status, type: String, default: "Open"
+  field :status, type: String, default: 'Open'
   field :genre, type: String
   field :views, type: Integer, default: 0
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TopsController < ApplicationController
   def index
     @top_book = Book.all
@@ -8,10 +10,10 @@ class TopsController < ApplicationController
   private
 
   def filter_by_genre
-    if params[:genre].present?
-      @filter = @top_book.where(genre: params[:genre])
-    else
-      @filter = @top_book
-    end
+    @filter = if params[:genre].present?
+                @books.where(genre: params[:genre])
+              else
+                @books
+              end
   end
 end

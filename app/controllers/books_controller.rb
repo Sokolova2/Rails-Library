@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BooksController < ApplicationController
   before_action :set_book, only: %i[show update destroy]
   before_action :authenticate_user!, only: %i[create update destroy]
@@ -12,11 +14,11 @@ class BooksController < ApplicationController
   end
 
   def new
-    @book = Book.new
+    @book_new = Book.new
   end
 
   def create
-    @book = Book.new(book_params)
+    @book_new = Book.new(book_params)
 
     if @book.save
       flash[:notice] = t('book-created')
@@ -55,10 +57,10 @@ class BooksController < ApplicationController
   end
 
   def filter_by_genre
-    if params[:genre].present?
-      @filter = @books.where(genre: params[:genre])
-    else
-      @filter = @books
-    end
+    @filter = if params[:genre].present?
+                @books.where(genre: params[:genre])
+              else
+                @books
+              end
   end
 end

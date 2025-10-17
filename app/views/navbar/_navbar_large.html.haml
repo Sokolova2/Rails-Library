@@ -19,8 +19,7 @@
           %i.bi.bi-bookmark.fs-icon
       -if user_signed_in?
         = link_to messages_path do
-          .btn.btn-light.rounded-circle
-            = render 'navbar/message_counter'
+          = render 'navbar/message_counter'
       - else
         = link_to new_user_session_path, class: 'text-decoration-none text-dark' do
           .btn.btn-light.rounded-circle
