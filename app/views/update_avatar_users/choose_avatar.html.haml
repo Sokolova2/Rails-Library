@@ -9,7 +9,7 @@
       %button#nav-animal-tab.nav-link.active{ "aria-controls" => "nav-animal", "aria-selected" => "true", "data-bs-target" => "#nav-animal", "data-bs-toggle" => "tab", :role => "tab", :type => "button" } Animal
       %button#nav-female-tab.nav-link{ "aria-controls" => "nav-female", "aria-selected" => "false", "data-bs-target" => "#nav-female", "data-bs-toggle" => "tab", :role => "tab", :type => "button" } Women
       %button#nav-male-tab.nav-link{ "aria-controls" => "nav-male", "aria-selected" => "false", "data-bs-target" => "#nav-male", "data-bs-toggle" => "tab", :role => "tab", :type => "button" } Men
-      %button#nav-custom-tab.nav-link{ "aria-controls" => "nav-custom", "aria-selected" => "false", "data-bs-target" => "#nav-custom", "data-bs-toggle" => "tab", :role => "tab", :type => "button" } Add avatar
+      %button#nav-custom-tab.nav-link{ "aria-controls" => "nav-custom", "aria-selected" => "false", "data-bs-target" => "#nav-custom", "data-bs-toggle" => "tab", :role => "tab", :type => "button" } Choose your avatar
     #nav-tabContent.tab-content
       #nav-animal.tab-pane.fade.show.active{ "aria-labelledby" => "nav-animal-tab", :role => "tabpanel" }
         = render partial: 'update_avatar_users/tab_content', locals: { gender: :animal }
