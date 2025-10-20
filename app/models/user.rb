@@ -55,9 +55,7 @@ class User
   has_many :favorites, dependent: :destroy
   has_many :impressions, dependent: :destroy
   has_many :messages, dependent: :destroy
-
-  private
-
+  
   def set_random_avatar
     SetRandomAvatarService.new(self).set_random_avatar
   end
