@@ -7,10 +7,6 @@ development:
 test:
   clients:
     default:
-      database: rails_library_test
-      hosts:
-        - localhost:27017
+      uri: <%= ENV['MONGO_DB_CONNECT_TEST'] %>
       options:
-        read:
-          mode: :primary
-        max_pool_size: 1
+        server_selection_timeout: 5
