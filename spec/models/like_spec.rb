@@ -8,7 +8,7 @@ RSpec.describe Like, type: :model do
     it { is_expected.to have_timestamps }
   end
 
-  describe 'assocations' do
+  describe 'associations' do
     it { is_expected.to belong_to(:user).of_type(User) }
     it { is_expected.to belong_to(:book).of_type(Book) }
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
@@ -8,7 +10,7 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_timestamps }
   end
 
-  describe 'field' do
+  describe 'fields' do
     it { is_expected.to have_field(:login) }
     it { is_expected.to have_field(:email).of_type(String).with_default_value_of('') }
     it { is_expected.to have_field(:encrypted_password).of_type(String).with_default_value_of('') }
