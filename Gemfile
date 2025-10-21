@@ -28,6 +28,8 @@ group :development, :test do
 
   gem 'rubocop-rails-omakase', require: false
 
+  gem 'faker'
+
   gem 'rspec-rails'
   gem 'mongoid-rspec'
   gem 'factory_bot_rails'
