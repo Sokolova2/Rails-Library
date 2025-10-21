@@ -8,12 +8,14 @@ class SetRandomAvatarService
   def set_random_avatar
     return if @user.avatar.present?
 
-    if @user.gender.nil? || @user.gender == 'gender'
+    if @user.gender.nil? || @user.gender == 'uncertain'
       set_avatar_without_gender
     else
       set_avatar_with_gender
     end
   end
+
+  private
 
   def set_avatar_without_gender
     avatar = Rails.root.glob('app/assets/images/animal/*.png')

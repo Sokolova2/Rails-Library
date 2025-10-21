@@ -16,8 +16,7 @@ class UpdateUserAvatarService
     if avatar_param_present?
       handle_avatar
     elsif user_avatar_param_present?
-      user.update(avatar: @params[:user][:avatar])
-      redirect_to edit_user_registration_path
+      @user.update(avatar: @params[:user][:avatar])
     end
   end
 

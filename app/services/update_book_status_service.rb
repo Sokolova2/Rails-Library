@@ -18,6 +18,8 @@ class UpdateBookStatusService
     end
   end
 
+  private
+
   def users_favorite_books
     book_favorites = Favorite.where(book_id: @book.id)
 
