@@ -3,15 +3,15 @@
 source 'https://rubygems.org'
 
 gem 'cssbundling-rails'
-gem 'rails', '~> 8.0.2'
-gem 'propshaft'
-gem 'puma', '>= 5.0'
 gem 'importmap-rails'
-gem 'turbo-rails'
-gem 'stimulus-rails'
 gem 'jbuilder'
 gem 'kaminari'
 gem 'kaminari-mongoid'
+gem 'propshaft'
+gem 'puma', '>= 5.0'
+gem 'rails', '~> 8.0.2'
+gem 'stimulus-rails'
+gem 'turbo-rails'
 
 gem 'tzinfo-data', platforms: %i[windows jruby]
 
@@ -30,9 +30,9 @@ group :development, :test do
 
   gem 'faker'
 
-  gem 'rspec-rails'
-  gem 'mongoid-rspec'
   gem 'factory_bot_rails'
+  gem 'mongoid-rspec'
+  gem 'rspec-rails'
 end
 
 group :development do
