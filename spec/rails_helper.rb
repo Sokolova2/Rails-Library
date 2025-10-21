@@ -13,6 +13,8 @@ RSpec.configure do |config|
     Mongoid.purge!
   end
 
+  config.include Devise::Test::IntegrationHelpers, type: :request
+
   config.use_active_record = false
 
   config.filter_rails_from_backtrace!

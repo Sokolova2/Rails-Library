@@ -1,0 +1,8 @@
+# frozen_string_literal: true
+
+FactoryBot.define do
+  factory :favorite do
+    association :user, factory: :user
+    association :book, factory: :book
+  end
+end

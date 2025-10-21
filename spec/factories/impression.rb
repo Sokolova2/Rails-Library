@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :impression do
-    association :book
-    association :user, optional: true
+    association :book, factory: :book
+    association :user, factory: :user, optional: true
   end
 end

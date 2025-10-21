@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :history do
     status { 'took' }
-    association :book
-    association :user
+    association :book, factory: :book
+    association :user, factory: :user
   end
 end
