@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class BooksController < ApplicationController
+  before_action :authenticate_admin!, only: %i[new create update destroy]
   before_action :set_book, only: %i[show update destroy]
-  before_action :authenticate_user!, only: %i[create update destroy]
   before_action :filter_by_genre, only: %i[index]
 
   def index; end

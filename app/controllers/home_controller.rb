@@ -5,9 +5,8 @@ class HomeController < ApplicationController
 
   def index
     @top_book = Book.all.sort_by { |book| [-book.likes.count, -book.views] }
-    return unless user_signed_in?
 
-    Impression.where(user_id: current_user.id).destroy_all
+    Impression.where(user_id: current_user.id).destroy_all if user_signed_in?
   end
 
   private

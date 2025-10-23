@@ -2,9 +2,10 @@
 
 class CommentsController < ApplicationController
   before_action :set_book
+  before_action :authenticate_user!
 
   def create
-    Comment.create(user_id: current_user.id, book_id: @book.id, content: params[:content])
+    Comment.create(user_id: current_user.id, book_id: @book.id, content: params[:content]) if user_signed_in?
 
     redirect_to book_path(@book)
   end

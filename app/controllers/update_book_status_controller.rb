@@ -2,6 +2,7 @@
 
 class UpdateBookStatusController < ApplicationController
   before_action :set_book
+  before_action :authenticate_user!
 
   def update
     UpdateBookStatusService.new(@book, current_user).update_book_status

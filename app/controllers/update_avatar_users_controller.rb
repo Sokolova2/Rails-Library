@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UpdateAvatarUsersController < ApplicationController
+  before_action :authenticate_user!
+
   def choose_avatar
     @user = current_user
     @avatars = UpdateUserAvatarService::AVATARS

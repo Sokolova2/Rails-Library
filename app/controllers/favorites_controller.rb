@@ -1,14 +1,15 @@
 # frozen_string_literal: true
 
 class FavoritesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_book, only: %i[create destroy]
 
-  def index; end
-
-  def show
+  def index
     favorite = Favorite.where(user: current_user.id).pluck(:book_id)
     @favorite_books = Book.in(id: favorite)
   end
+
+  def show; end
 
   def create
     return if Favorite.exists?(user_id: current_user.id, book_id: @book.id)
