@@ -166,6 +166,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rspec-support (v3.13.6, ruby-3.2.3-p157) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubocop (v1.81.1, ruby-3.2.3-p157) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubocop-ast (v1.47.1, ruby-3.2.3-p157) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rubocop-factory_bot (v2.27.1, ruby-3.2.3-p157) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubocop-haml (v0.3.1, ruby-3.2.3-p157) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubocop-performance (v1.26.0, ruby-3.2.3-p157) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubocop-rails (v2.33.4, ruby-3.2.3-p157) [gem]" level="application" />
