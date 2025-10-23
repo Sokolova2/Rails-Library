@@ -26,3 +26,11 @@ Style/FetchEnvVar:
 Rails/SkipsModelValidations:
   Exclude:
     - 'app/controllers/**'
+
+RSpec/NestedGroups:
+  Exclude:
+    - 'spec/requests/**'
+
+RSpec/LetSetup:
+  Exclude:
+    - 'spec/requests/**'
