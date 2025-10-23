@@ -22,7 +22,7 @@ RSpec.describe SearchService, type: :service do
 
     context 'when search is blank' do
       it 'gets all books' do
-        expect(service.search('').to_a).to match_array(books)
+        expect(service.search('').pluck(:title)).to match_array(Book.all.map(&:title))
       end
     end
   end

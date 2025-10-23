@@ -3,26 +3,35 @@
 require 'rails_helper'
 
 RSpec.describe 'Home', type: :request do
-  let(:user) { create :user }
-  let!(:book1) { create(:book, views: 10) }
-  let!(:book2) { create(:book, views: 5) }
-  let!(:book3) { create(:book, views: 1) }
-
-  before do
-    login_as(user, scope: :user)
-
-    create_list(:like, 10, book: book1)
-    create_list(:like, 5, book: book2)
-    create_list(:like, 1, book: book3)
-  end
+  let(:user) { create(:user) }
+  let(:book) { create(:book) }
 
   describe 'GET /index' do
     subject(:get_index) { get root_path }
 
-    it 'return the sorted books' do
-      subject
+    context 'when authorize' do
+      before do
+        login_as(user, scope: :user)
+        create(:impression, user: user)
+      end
 
-      expect(response).to have_http_status(:success)
+      it 'returns all books and remove impressions' do
+        expect { get_index }.to change(Impression, :count).by(-1).and change { response }.to have_http_status(:success)
+      end
+    end
+
+    context 'when not authorize' do
+      context 'when return all book' do
+        before { get_index }
+
+        it 'returns the all books' do
+          expect(response).to have_http_status(:success)
+        end
+      end
+
+      it 'does not remove impressions' do
+        expect { get_index }.not_to change(Impression, :count)
+      end
     end
   end
 end
