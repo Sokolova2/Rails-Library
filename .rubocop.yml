@@ -1,5 +1,8 @@
 plugins:
   - rubocop-rails
+  - rubocop-rspec
+  - rubocop-factory_bot
+  - rubocop-haml
 AllCops:
   NewCops: enable
 
@@ -19,3 +22,7 @@ Rails/StrongParametersExpect:
 Style/FetchEnvVar:
   Exclude:
     - 'config/environments/**'
+
+Rails/SkipsModelValidations:
+  Exclude:
+    - 'app/controllers/**'
