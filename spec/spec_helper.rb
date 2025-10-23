@@ -14,4 +14,6 @@ RSpec.configure do |config|
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
   config.include Mongoid::Matchers
+  Mongoid.logger.level = Logger::WARN
+  Mongo::Logger.logger.level = Logger::WARN
 end

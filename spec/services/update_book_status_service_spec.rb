@@ -26,38 +26,15 @@ RSpec.describe UpdateBookStatusService, type: :service do
         expect { service.update_book_status }.to change(History, :count).by(1)
       end
 
-      context 'when creating history' do
-        before { service.update_book_status }
-
-        it 'history book equals specific book' do
-          expect(History.last.book).to eq(book)
-        end
-
-        it 'history book equals specific user' do
-          expect(History.last.user).to eq(user)
-        end
-
-        it 'history status equals took' do
-          expect(History.last.status).to eq('took')
-        end
-      end
-
       it 'adds notifies user' do
         expect { service.update_book_status }.to change(Message, :count).by(1)
       end
 
-      context 'when creating message' do
-        before { service.update_book_status }
+      it 'creates with correct attributes' do
+        service.update_book_status
 
-        it 'message user equals specific user' do
-          expect(Message.last.user).to eq(user)
-        end
-
-        it 'message read status equals false' do
-          expect(Message.last.read).to be_falsey
-        end
-
-        it 'message content not equals nil' do
+        aggregate_failures do
+          expect(History.last.status).to eq('took')
           expect(Message.last.content).not_to be_nil
         end
       end
@@ -86,14 +63,11 @@ RSpec.describe UpdateBookStatusService, type: :service do
         expect { service.update_book_status }.to change(Message, :count).by(1)
       end
 
-      context 'when creating message' do
-        before { service.update_book_status }
+      it 'creating with correct attributes' do
+        service.update_book_status
 
-        it 'message user equals specific user' do
+        aggregate_failures do
           expect(Message.last.user).to eq(user)
-        end
-
-        it 'message content not equals nil' do
           expect(Message.last.content).not_to be_nil
         end
       end

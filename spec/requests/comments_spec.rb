@@ -13,6 +13,7 @@ RSpec.describe 'Comments', type: :request do
   describe 'POST /create' do
     let(:valid_params) { { comment: attributes_for(:comment) } }
 
+    # TODO: test call to action, not factory create
     subject(:create_comment) { create(:comment, user_id: user.id, book_id: book.id) }
 
     it 'create comment successfully' do

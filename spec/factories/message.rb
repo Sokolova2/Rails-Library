@@ -5,6 +5,6 @@ FactoryBot.define do
     content { 'Book close' }
     read { false }
 
-    association :user, factory: :user
+    user
   end
 end

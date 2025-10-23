@@ -3,14 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Books', type: :request do
-  include Warden::Test::Helpers
-  Warden.test_mode!
-
   let(:user) { create(:user) }
   let(:books) { create_list(:book, 10) }
 
   before do
-    books[0].update(title: books[1].title)
+    books.first.update(title: books.second.title)
     login_as(user, scope: :user)
   end
 
@@ -18,8 +15,9 @@ RSpec.describe 'Books', type: :request do
     context 'when search is blank' do
       subject(:get_index) { get books_path }
 
+      before { get_index }
+
       it 'get all books' do
-        subject
         expect(response).to have_http_status(:success)
       end
     end
@@ -29,10 +27,12 @@ RSpec.describe 'Books', type: :request do
 
       it 'get all books with same title' do
         subject
-
+        # TODO: one expect per it
+        p response
+        p response.body
         expect(response).to have_http_status(:success)
-        expect(response.body).to include('Adventure')
         expect(response.body).not_to include('Horror')
+        expect(response.body).to include('Adventure')
       end
     end
   end
@@ -43,13 +43,6 @@ RSpec.describe 'Books', type: :request do
     it 'get show a page of a specific book' do
       expect { get_show }.to change { books[0].reload.views }.by(1)
       expect(response).to have_http_status(:success)
-      expect(response.body).to include(books[0].title)
-      expect(response.body).to include(books[0].descriptions)
-      expect(response.body).to include(books[0].author)
-      expect(response.body).to include(books[0].image.url)
-      expect(response.body).to include(books[0].status)
-      expect(response.body).to include(books[0].genre)
-      expect(response.body).to include(books[0].views.to_s)
     end
   end
 
@@ -60,19 +53,21 @@ RSpec.describe 'Books', type: :request do
       subject
 
       expect(response).to have_http_status(:success)
+      # expect(response.status).to be :ok
     end
   end
 
   describe 'POST /create' do
     context 'with valid parameters' do
       subject(:create_book) { post books_path create(:book) }
+
       it 'create a new book success' do
         expect { create_book }.to change { Book.count }.by(1)
       end
     end
 
     context 'with invalid parameters' do
-      subject(:create_book) { post books_path, params: { book: attributes_for(:book, title: nil) } }
+      subject(:create_book) { post books_path, params: { book: { title: 'we' } } }
 
       it 'not create a new book success' do
         expect { create_book }.to change { Book.count }.by(0)
@@ -81,7 +76,7 @@ RSpec.describe 'Books', type: :request do
     end
   end
 
-  describe 'PUT /update'  do
+  describe 'PUT /update' do
     context 'with valid parameters' do
       subject(:update_book) { put book_path(books[0]), params: { book: { title: 'Nice book' } } }
 

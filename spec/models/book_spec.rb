@@ -3,8 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe Book, type: :model do
-  subject { create(:book) }
-
   describe 'matchers' do
     it { is_expected.to be_mongoid_document }
     it { is_expected.to have_timestamps }
@@ -39,12 +37,12 @@ RSpec.describe Book, type: :model do
   end
 
   describe 'methods' do
-    context 'search' do
-      let(:search) { 'Alice in Wonderland' }
+    context 'when searching' do
+      let(:book) { create(:book) }
+      let(:search_term) { book.title }
 
-      it 'return all books with the search term' do
-        subject
-        expect(Book.search('Alice').map(&:title)).to include(search)
+      it 'returns all books with the search term' do
+        expect(described_class.search(book.title).map(&:title)).to include(search_term)
       end
     end
   end

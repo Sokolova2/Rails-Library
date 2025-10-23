@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Favorites', type: :request do
   let(:user) { create(:user) }
   let(:book) { create(:book) }
-  let!(:favorite) { create(:favorite, user: user, book: book) }
+  let!(:favorite) { create(:favorite, user: user, book: book) } # TOOD: remove it
 
   before do
     login_as(user, scope: :user)

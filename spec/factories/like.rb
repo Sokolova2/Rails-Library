@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :like do
-    association :user, factory: :user
-    association :book, factory: :book
+    user
+    book
   end
 end

@@ -20,7 +20,7 @@ RSpec.describe 'Likes', type: :request do
 
   describe 'DELETE /destroy' do
     let!(:like) { create(:like, user: user, book: book) }
-    subject(:destroy_like) { delete book_like_path(book, like ) }
+    subject(:destroy_like) { delete book_like_path(book, like) }
 
     it 'destroy like' do
       expect { destroy_like }.to change(Like, :count).by(-1)

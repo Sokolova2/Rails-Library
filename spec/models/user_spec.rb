@@ -37,11 +37,12 @@ RSpec.describe User, type: :model do
   end
 
   describe 'methods' do
-    context 'set random avatar' do
-      subject { user.set_random_avatar }
+    context 'when setting random avatar' do
+      subject(:service) { user.set_random_avatar }
 
-      it 'check that user have avatar' do
-        subject
+      before { service }
+
+      it 'checks that the user have an avatar' do
         expect(user.avatar).to be_present
       end
     end

@@ -30,7 +30,7 @@ RSpec.describe 'Messages', type: :request do
 
   describe 'DELETE /destroy' do
     subject(:destroy_messages) { delete message_path(messages) }
-    
+
     it 'destroy all messages' do
       expect { destroy_messages }.to change(Message, :count).by(-3)
     end

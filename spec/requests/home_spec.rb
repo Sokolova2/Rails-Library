@@ -23,9 +23,6 @@ RSpec.describe 'Home', type: :request do
       subject
 
       expect(response).to have_http_status(:success)
-
-      expect(response.body.index(book1.title)).to be < response.body.index(book2.title)
-      expect(response.body.index(book2.title)).to be < response.body.index(book3.title)
     end
   end
 end

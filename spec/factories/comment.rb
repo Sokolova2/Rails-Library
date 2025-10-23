@@ -3,8 +3,7 @@
 FactoryBot.define do
   factory :comment do
     content { 'Great' }
-
-    association :user, factory: :user
-    association :book, factory: :book
+    user
+    book
   end
 end
