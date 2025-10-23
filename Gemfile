@@ -40,6 +40,7 @@ group :development do
   gem 'web-console'
 
   gem 'rubocop'
+  gem 'rubocop-factory_bot'
   gem 'rubocop-haml'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
