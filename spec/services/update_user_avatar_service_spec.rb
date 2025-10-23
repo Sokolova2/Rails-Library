@@ -16,13 +16,7 @@ RSpec.describe UpdateUserAvatarService, type: :service do
       end
 
       it 'change user avatar to service avatar' do
-        old_avatar = user.avatar.filename.to_s
-
-        expect do
-          service.set_user_avatar
-        end.to change { user.reload.avatar.filename.to_s }.from(old_avatar)
-
-        expect(user.avatar.filename.to_s).to eq('avatar2.png')
+        expect { service.set_user_avatar }.to change { user.reload.avatar.filename.to_s }.to eq('avatar2.png')
       end
     end
 
@@ -32,9 +26,7 @@ RSpec.describe UpdateUserAvatarService, type: :service do
       end
 
       it 'change user avatar to upload avatar' do
-        allow(user).to receive(:update).and_call_original
-        service.set_user_avatar
-        expect(user.avatar.filename.to_s).to eq('avatar.png')
+        expect { service.set_user_avatar }.to change { user.avatar.filename.to_s }.to eq('avatar.png')
       end
     end
   end
