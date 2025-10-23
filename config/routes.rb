@@ -13,14 +13,16 @@ Rails.application.routes.draw do
     resources :likes
     resources :comments
     resource :ratings
-
+    resource :favorites
     put 'update_status', to: 'update_book_status#update'
   end
 
+  resources :favorites, only: [:index]
   resources :history
   resources :tops, only: %i[index]
-  resource :favorites
-  resources :messages, only: %i[index destroy]
+  resources :messages, only: [:index] do
+    delete :destroy, on: :collection
+  end
 
   get 'update_avatar_users', to: 'update_avatar_users#choose_avatar', as: :choose_avatar
   put 'update_avatar_users', to: 'update_avatar_users#update_avatar_users'
