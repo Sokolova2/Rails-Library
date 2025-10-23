@@ -3,7 +3,7 @@
   - if unread_message == 0
     .btn.btn-light.rounded-circle
       %i.bi.bi-bell.fs-icon
-  - if unread_message > 0
+  - if unread_message.positive?
     .d-flex.btn.btn-dark.rounded-circle.border-0
       %i.bi.bi-bell.fs-icon
       %p.fs-6.mt-auto= unread_message

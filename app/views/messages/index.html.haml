@@ -4,7 +4,7 @@
 
 .container
   .d-flex.justify-content-end.mb-4
-    = button_to message_path(@messages), method: :delete, class: 'border-0 bg-body-secondary' do
+    = button_to messages_path(@messages), method: :delete, class: 'border-0 bg-body-secondary' do
       %i.bi.bi-trash.fs-4
 
   -if @messages.present?

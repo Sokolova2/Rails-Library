@@ -18,7 +18,7 @@
             = f.password_field :password_confirmation, autocomplete: 'new-password', placeholder: 'password-confirmation', class: 'form-control rounded-5'
         .mb-3
           .field
-            = f.select :gender, options_for_select([['uncertain'], ['male'], ['female']]), {},  { class: 'form-select rounded-5' }
+            = f.select :gender, options_for_select([['uncertain'], ['male'], ['female']]), {}, { class: 'form-select rounded-5' }
         .mb-3
           .field
             = f.file_field :avatar, autocomplete: 'avatar', class: 'form-control rounded-5'
@@ -34,5 +34,5 @@
       .d-flex.justify-content-center
         %p.pe-1 Already have an account?
         = render 'devise/shared/links'
-    = button_to root_path, method: :get,  class: 'btn position-absolute rounded-circle border-0 shadow-sm close-button' do
+    = button_to root_path, method: :get, class: 'btn position-absolute rounded-circle border-0 shadow-sm close-button' do
       %i.bi.bi-x-lg

@@ -17,10 +17,10 @@
         = render partial: 'update_avatar_users/tab_content', locals: { gender: :female }
       #nav-male.tab-pane.fade{ "aria-labelledby" => "nav-male-tab", :role => "tabpanel" }
         = render partial: 'update_avatar_users/tab_content', locals: { gender: :male }
-      #nav-custom.tab-pane.fade{ "aria-labelledby" => "nav-custom-tab", :role => "tabpanel" }
+      #nav-custom.tab-pane.fade{ 'aria-labelledby' => 'nav-custom-tab', :role => 'tabpanel' }
         = form_with(model: @user, url: update_avatar_users_path, html: { method: :put }) do |f|
           = f.file_field :avatar, autocomplete: 'avatar', class: 'form-control mt-3'
           = f.submit 'Update Avatar', class: 'btn btn-secondary mt-3'
   .d-flex.justify-content-center.mt-5
-    = link_to :back, class: "h5 ms-5 fs-2" do
+    = link_to :back, class: 'h5 ms-5 fs-2' do
       Back

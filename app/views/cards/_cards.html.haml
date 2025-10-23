@@ -3,7 +3,7 @@
     .text-center
       = image_tag book.image.url, class: 'book-image rounded-4'
   .font
-    %h5.card-title.text-break.mt-2.ms-2{style: 'height: 30px'}= book.title
+    %h5.card-title.text-break.mt-2.ms-2{ style: 'height: 30px' }= book.title
     -if user_signed_in?
       .d-flex.align-items-center.justify-content-between
         -if book.status == 'Closed'
@@ -11,10 +11,10 @@
         -else
           = button_to 'Get', book_update_status_path(book), method: :put, class: 'btn btn-outline-secondary ms-2'
         - if book.favorites.exists?(user_id: current_user.id)
-          = button_to favorites_path(book_id: book.id), method: :delete, class: 'btn btn-light rounded-circle' do
+          = button_to book_favorites_path(book_id: book.id), method: :delete, class: 'btn btn-light rounded-circle' do
             %i.bi.bi-bookmark-dash.fs-5
         - else
-          = button_to favorites_path(book_id: book.id), method: :post, class: 'btn btn-light rounded-circle' do
+          = button_to book_favorites_path(book_id: book.id), method: :post, class: 'btn btn-light rounded-circle' do
             %i.bi.bi-bookmark-plus.fs-5
     = turbo_frame_tag "frame_#{book.id}" do
       - if user_signed_in? && current_user.admin

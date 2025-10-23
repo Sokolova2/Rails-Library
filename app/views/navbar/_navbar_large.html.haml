@@ -1,7 +1,7 @@
 %nav.navbar.navbar-expand-lg.bg-body-secondary
   .container-fluid
     .d-flex.align-items-center.gap.justify-content-between
-      %a.navbar-brand.align-items-start.ms-1{:href => root_path}
+      %a.navbar-brand.align-items-start.ms-1{ href: root_path }
         %i.bi.bi-book.fs-1
       .d-flex.gap-2
         = button_to 'Catalog', books_path, method: :get, class: 'btn btn-light rounded-5 btn-navbar'

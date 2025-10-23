@@ -60,8 +60,8 @@
           .field
             = f.label :gender, class: 'form-label'
             %br/
-            = f.select :gender, options_for_select([[''], ['male'], ['female']]), {},  { class: 'form-select' }
+            = f.select :gender, options_for_select([[''], ['male'], ['female']]), {}, { class: 'form-select' }
         .mb-3
           .actions
-            = f.submit "Update", class: 'btn btn-secondary mb-5 w-100'
+            = f.submit 'Update', class: 'btn btn-secondary mb-5 w-100'
 

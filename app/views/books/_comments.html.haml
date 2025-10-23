@@ -1,5 +1,5 @@
 - if user_signed_in?
-  = turbo_frame_tag 'frame3' do
+  = turbo_frame_tag 'frame4' do
     = form_with(url: book_comments_path(@book), location: true, method: :post) do |f|
       .d-flex.mb-4
         = f.text_field :content, placeholder: 'Leave comments', class: 'form-control rounded-5'
@@ -13,7 +13,7 @@
           %p.mt-2= comment.content
 - else
   .d-flex.align-items-center.gap-2.mb-4
-    %input.form-control.rounded-5.border-0.form-control.p-2{ type: "text", placeholder: "Leave comments", name: "content" }
+    %input.form-control.rounded-5.border-0.form-control.p-2{ type: 'text', placeholder: 'Leave comments', name: 'content' }
     = link_to new_user_session_path class: 'border-0 text-decoration-none' do
       %i.bi.bi-arrow-up-circle-fill.fs-3.border-0.bg-body-secondary.text-dark
   - @book.comments.each do |comment|
